@@ -1,0 +1,35 @@
+<% content_for(:meta_title) {"iniciativas_sociales"} %>
+
+<div class="col-md-10 col-sm-10 col-xs-12">
+<div id="introduccion" class="row">
+  <p>Día a día aparecen en todo el mundo iniciativas y campañas cuyo objetivo es contribuir a la disminución del desperdicio de alimentos. Cuantos más seamos luchando contra el desperdicio de alimentos, más gente podrá ser consciente de la cantidad de recursos y dinero que desperdiciamos en un mundo finito.</p>
+  <p>Aquí puedes encontrar algunas que ya están dando resultados muy positivos para evitar el desperdicio de alimentos en España y en el resto del mundo.</p>
+</div><!-- /row -->
+
+  <% if params[:tag] %>
+    <h1 id="title">Iniciativas de <%= params[:tag] %></h1>
+  <% end %>
+
+    <% @iniciativas.each do |iniciativa| %>
+    <div id="listado" class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <%= link_to image_tag(iniciativa.image.url(:medium), :alt => " ", :class => "img-responsive"), iniciativa_url(iniciativa) %>
+        <%#= image_tag iniciativa.image.url(:medium), :alt => "", :class => "img-responsive" %>  
+      </div>
+      <div class="col-md-8 col-sm-6 col-xs-12">
+          <h3 class="veinticinco"><%= link_to iniciativa.title, iniciativa_url(iniciativa) %></h3>
+          <div class="cuerpo">
+            <%= link_to truncate_html(markdown(iniciativa.body).html_safe, length: 340, omission: ' ... '), iniciativa_url(iniciativa) %>
+          </div>
+          <!--<p>[tags con link a las tags]</p>-->
+      </div>
+    </div><!-- /listado -->
+    <% end %>
+
+<%= paginate(@iniciativas) %>
+
+</div><!-- /col-md-10 -->
+
+<div id="sidebar-right" class="col-md-2 col-sm-2 col-xs-12">
+    <%= render :partial => "partials/sidebar_iniciativas", :locals => { :url => "https://yonodesperdicio.org" } %>
+</div><!-- /col-md-2-->

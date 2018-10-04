@@ -1,0 +1,50 @@
+<% content_for(:meta_title) {@noticia.title} %>
+<% content_for :meta_description do %>
+  <meta name="description" content='<%= @noticia.body %>' />
+  <meta property="og:title" content="<%= @noticia.body %>" />
+  <meta property="og:image" content='<%= @noticia.image.url %>' />
+  <meta property="og:title" content='<%= @noticia.title %>' />
+  <meta itemprop="description" content="<%= strip_tags @noticia.body %>" />
+  <meta itemprop="image" content='<%= @noticia.image.url %>' />
+<% end %>
+
+
+<div class="row">
+  <div id="imagen" class="col-md-5">
+    <%= image_tag @noticia.image.url(:large), :alt => "", :class => "img-responsive" %>
+    <p><%= @noticia.video.html_safe if @noticia.video %></p>
+    <p>
+      <% @noticia.tag_list.each do |tag| %>
+        <%= link_to tag, noticias_url(tag: tag) %>,
+      <% end %>
+    </p>
+    <p>
+      <%= render :partial => "partials/social_buttons",
+                 :locals => {
+                   :url => noticia_url(@noticia),
+                   :meta_title => @noticia.title } %>
+    </p>
+  </div><!-- /imagen -->
+
+  <div id="cuerpo" class="col-md-7">
+    <h1 id="title"><%= @noticia.title %></h1>
+    <p class="fecha"><%= @noticia.published_at.strftime("%d/%m/%Y") %></p>
+    <p><%= markdown(@noticia.body).html_safe %></p>
+    <p><i class="fa fa-arrow-left"></i><%= link_to ' VOLVER' , noticias_path %></p>
+
+    <div id="comentarios">
+      <p><b>COMENTAR</b>
+      <% if !user_signed_in? %>
+       <b>(Para dejar un comentario es necesario iniciar sesión)</b>
+        <span class="login">
+          <%= link_to t('nlt.login'), new_user_session_path, "data-no-turbolink" => true %>
+        </span>
+      <% end %>
+      <div class="user_login_box"><%= render :partial => "partials/user_actions" %>  </div></p>
+
+      <%= render :partial => "comments/form", :locals => {:path => noticia_comments_path(@noticia), :comment => Comment.new} %>
+      <%= render :partial => "comments/list", :locals => {:comments => @noticia.comments} %>
+  </div><!--/comentarios-->
+
+  </div><!-- /cuerpo -->
+</div><!-- /row -->

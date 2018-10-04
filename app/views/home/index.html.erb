@@ -1,0 +1,97 @@
+<div id="alimentospro" class="col-md-12 col-sm-12 col-xs-12">
+  <h2>Alimentos para compartir</h2>
+  <% @alimentospro.each_slice(4) do |alimentos| %>
+    <% alimentos.each do |alimento| %>
+      
+      <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="alimento">
+        <%= link_to image_tag(alimento.image.url(:medium), :alt => " ", :class => "img-responsive"), adslug_path(id: alimento.id, slug: alimento.slug) %>
+        <% if alimento.is_give? %>
+          <span class="ad_status <%= alimento.status_class %>"><%= alimento.status_string %></span>
+        <% end %>
+          <h3 class="veinticinco"><%= link_to alimento.title, adslug_path(id: alimento.id, slug: alimento.slug) %></h3>
+          <p class="cantidad"><%= grams_to_kg(alimento.grams) %> kg - <span><%= alimento.food_category %></span></p>
+          <p>Código postal del alimento: <%= alimento.zipcode %></p>
+          <p>Fecha límite de entrega: <%= formated_date(alimento.pick_up_date) %></p>
+
+          <div id="usuario" class="row">
+            <div id="izda" class="col-md-4">
+              <%= image_tag alimento.user.image.url(:thumb), :alt => "", :class => "avatar, img-responsive" %>
+            </div>
+            <div id="dcha" class="col-md-8">
+              <p class="username"><b><%= link_to alimento.user.username, profile_path(alimento.user.username) %></b></p>
+              <p>Total comida entregada: <span id="comidaentregada"><%= grams_to_kg(alimento.user.total_quantity) %> kg</span></p>
+            </div>
+
+            <div id="editar" class="col-md-12"><% if can? :update, alimento %>
+              <%= link_to ads_edit_path(alimento.id) do %>
+                <div class="submit"><%= t('nlt.edit_this_ad') %></div>
+              <% end %>
+            <% end %>
+            </div>
+          </div><!--/usuario-->
+        </div><!--/alimento-->
+      </div><!--/col-md-6-->
+    <% end %>
+  <% end %>
+
+<div id="recetario" class="col-md-3 col-sm-3 col-xs-12 alimento">
+   <%= link_to image_tag("propias/portada_recetario_NOVEDAD.jpg", :alt => "Recetas de Yonodesperdicio", :class => "img-responsive"), asset_path("Recetas-Yonodesperdicio.pdf") %>
+   <%= link_to "Descarga el recetario", asset_path("Recetas-Yonodesperdicio.pdf"), :class => "btn" %>
+</div>
+<div id="masads" class="row">
+  <%= link_to 'Ver +' , particulares_url %>
+</div>
+</div><!--/alimentospro-->
+
+
+<div class="homenotideas col-sm-8 col-md-8 col-xs-12">
+  <h2>Últimas noticias y recetas</h2>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <!-- Una noticia -->
+    <% if @noticia %>
+      <%= link_to image_tag(@noticia.image.url(:fourthree), :alt => @noticia.title, :class => "img-responsive"), noticia_url(@noticia) %>
+      <h3 class="veinticinco"><span>[Noticia] </span><%= link_to @noticia.title, noticia_url(@noticia) %></h3>
+      <div class="cuerpazo"><%= link_to truncate_html(markdown(@noticia.body).html_safe, length: 200, omission: ' ... '), noticia_url(@noticia) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <!--<h2>Ideas</h2>-->
+    <!-- Una idea -->
+    <% if @idea %>
+      <%= link_to image_tag(@idea.image.url(:fourthree), :alt => @idea.title, :class => "img-responsive"), idea_url(@idea) %>
+      <h3 class="veinticinco"><span>[Idea] </span><%= link_to @idea.title, idea_url(@idea) %></h3>
+      <div class="cuerpazo"><%= link_to truncate_html(markdown(@idea.introduction).html_safe, length: 200, omission: ' ... '), idea_url(@idea) if @idea.introduction %>
+      </div>
+    <% end %>
+  </div>
+
+</div><!--/homenotideas-->
+
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <h2>Twitter</h2>
+  <div id="tweets" class="col-md-12 col-sm-12 col-xs-12">
+    <a class="twitter-timeline"  href="https://twitter.com/nodesperdicio" data-widget-id="638396445943533568" height="400">Tweets de @nodesperdicio.</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </div>
+</div>
+
+<div class="row">
+<div class="homecontador col-md-12 col-xs-12">
+  <div class="col-md-1 col-sm-1 col-xs-1">
+    <%= image_tag "propias/cebolla.png", :alt => "Imagen cebolla", :id => "cebolla", :class => "img-responsive" %>
+  </div>
+
+  <div class="col-md-5 col-sm-5 col-xs-10">
+    <div id="contador"><%= number_with_precision(great_total_quantity, :precision => 2, :delimiter => '.', :separator => "´") %> kg</div>
+  </div>
+
+  <div id="contador-texto" class="col-md-5 col-sm-5 col-xs-2">Son los kilos de comida que entre todos hemos conseguido evitar que acaben en la basura</div>
+
+  <div class="col-md-1 col-sm-1 col-xs-1">
+    <%= image_tag "propias/leche.png", :alt => "Imagen leche", :id => "leche", :class => "img-responsive" %>
+  </div>
+</div><!--/homecontador-->
+</div><!--/row-->

@@ -1,0 +1,18 @@
+<% content_for(:meta_title, t('nlt.forgot_your_password')) %>
+
+<div id="loginblock" class="col-md-4 col-md-offset-4">
+  <h1 id="title"><%= "Recordar contraseña" %></h1>
+
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+    <fieldset>
+      <p><%= t('devise.passwords.instructions') %></p>
+      <%= devise_error_messages! %>
+      <div><%= f.label :email %><br />
+        <%= f.email_field :email, :autofocus => true %>
+      </div>
+      <div class="entrar"><%= f.submit t('devise.passwords.send') %></div>
+    </fieldset>
+  <% end %><br />
+  
+  <%= render "devise/shared/links" %>
+</div><!--/loginblock-->

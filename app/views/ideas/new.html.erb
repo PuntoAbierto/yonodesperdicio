@@ -1,0 +1,9 @@
+<div id="newinside" class="col-md-8 col-md-offset-2">
+
+  <h1 id="title">Sube tu idea, <%= current_user.name %></h1>
+
+  <%= render partial: 'form', locals: {form_url: my_ideas_path} %>
+
+</div><!--/newinside-->
+
+<center><%= image_tag "propias/bodegon-formularios.png", :alt => "Imagen bodegón'", :class => "img-responsive" %></center>

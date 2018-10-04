@@ -1,0 +1,61 @@
+<% content_for(:meta_title) {@idea.title} %>
+<% content_for :meta_description do %>
+  <meta name="description" content='<%= @idea.introduction %>' />
+  <meta property="og:title" content="<%= @idea.introduction %>" />
+  <meta property="og:image" content='<%= @idea.image.url %>' />
+  <meta property="og:title" content='<%= @idea.title %>' />
+  <meta itemprop="description" content="<%= strip_tags @idea.body %>" />
+  <meta itemprop="image" content='<%= @idea.image.url %>' />
+<% end %>
+
+
+<div class="row">
+  <div id="imagen" class="col-md-5">
+    <%= image_tag @idea.image.url(:large), :alt => " ", :class => "img-responsive" %>
+    <p>
+      <% @idea.tag_list.each do |tag| %>
+        <%= link_to tag, ideas_tag_url(tag: tag) %>,
+      <% end %>
+    </p>
+    <p>
+      <%= render :partial => "partials/social_buttons",
+                 :locals => {
+                    :url => idea_url(@idea),
+                    :meta_title => @idea.title } %>
+    </p>
+  </div><!-- /imagen -->
+
+  <div id="cuerpo" class="col-md-7">
+
+    <h1 id="title"><%= @idea.title %></h1>
+    <p class="fecha"><%= @idea.published_at.strftime("%d/%m/%Y") %> | Por: <strong><%= link_to @idea.user, profile_path(@idea.user.username) %></strong></p>
+    <div class="intro"><%= markdown(@idea.introduction).html_safe if @idea.introduction %></div>
+
+
+<% if @idea.ingredients.presence %>
+    <h3 class="titulospeque"><%= t('¿Qué se necesita?') %></h3>
+    <div class="ingredientes"><%= markdown(@idea.ingredients).html_safe if @idea.ingredients %></div>
+  <% else %>
+
+<% end %>
+
+    <h3 class="titulospeque">¿Cómo se hace?</h3>
+    <div class="como"><%= markdown(@idea.body).html_safe %></div>
+    <p><i class="fa fa-arrow-left"></i><%= link_to ' VOLVER' , ideas_path %></p>
+
+    <div id="comentarios">
+      <p><b>COMENTAR</b>
+      <% if !user_signed_in? %>
+       <b>(Para dejar un comentario es necesario iniciar sesión)</b>
+        <span class="login">
+          <%= link_to t('nlt.login'), new_user_session_path, "data-no-turbolink" => true %>
+        </span>
+      <% end %>
+      <div class="user_login_box"><%= render :partial => "partials/user_actions" %></div></p>
+
+      <%= render :partial => "comments/form", :locals => {:path => idea_comments_path(@idea), :comment => Comment.new} %>
+      <%= render :partial => "comments/list", :locals => {:comments => @idea.comments} %>
+    </div><!--/comentarios-->
+
+  </div><!-- /cuerpo -->
+</div><!-- /row -->

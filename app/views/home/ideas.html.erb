@@ -1,0 +1,60 @@
+<% content_for(:meta_title) {"ideas"} %>
+
+<div class="col-md-9 col-sm-9 col-xs-12">
+<ul id="submenu">
+  <li><%= link_to "Recetas", ideas_url(category: 'recetas'), :class => submenu_class('recetas') %></li>
+  <li><%= link_to "Trucos", ideas_url(category: 'trucos'), :class => submenu_class('trucos') %></li>
+</ul>
+</div>
+
+  <div class="col-md-3 col-sm-3 col-xs-12">
+    <div id="menudcha">
+      <%= form_tag(ideas_path, :method => "get", id: "buscadorideas") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "BUSCAR IDEAS" %>
+        <%= button_tag(type: "submit", class: " ") do %>
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <% if params[:tag] %>
+    <h1 id="title">Ideas frescas de <%= params[:tag] %></h1>
+  <% end %>
+
+
+  <% @ideas.each_slice(3) do |ideas| %>
+    <div id="gridrecetas" class="col-md-12 col-sm-12 col-xs-12">
+    <% ideas.each do |idea| %>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <%= link_to image_tag(idea.image.url(:medium), :alt => " ", :class => "img-responsive"), idea_url(idea) %>
+        <h3 class="veinticinco"><%= link_to idea.title, idea_url(idea) %></h3>
+        <div><%= idea.published_at.strftime("%d/%m/%Y") %>
+        <span> | Por: <%= link_to idea.user, profile_path(idea.user.username) %></span></div>
+        <div class="cuerpo">
+         <%= link_to truncate_html(markdown(idea.introduction).html_safe, length: 200, omission: ' ... '), idea_url(idea) %>
+        </div>
+      </div><!--/col-md-4-->
+
+    <% end %>
+    </div><!--/gridrecetas-->
+  <% end %>
+
+<%= paginate(@ideas) %>
+
+
+<div id="subereceta" class="row col-md-12 col-sm-12 col-xs-12">
+  <div class="col-md-10 col-sm-10 col-xs-10">
+    <span class="btn btn-rojo"><%= link_to 'Sube tu idea', new_my_idea_path %></span>
+    <% unless user_signed_in? %>
+      <span class="enrojo">  (Para subir tu receta o truco tienes que iniciar sesión)</span>
+    <% end %>
+  </div>
+  <% unless user_signed_in? %>
+    <div class="login col-md-2 col-sm-2 col-xs-2">
+      <%= link_to t('nlt.login'), new_user_session_path, "data-no-turbolink" => true %>
+    </div>
+  <% end %>
+</div><!-- /subereceta -->

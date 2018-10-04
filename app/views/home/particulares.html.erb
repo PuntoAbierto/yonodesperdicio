@@ -1,0 +1,69 @@
+<% content_for(:meta_title) {"particulares"} %>
+
+<div id="titalimentos" class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12">Entre particulares</div>
+  <div class="col-md-8 col-sm-8 col-xs-12"><%= form_tag(particulares_path, :method => "get", id: "buscadorads") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "BUSCAR ALIMENTOS" %>
+      <%= select_tag :food_category, options_for_select(Ad::FOOD_CATEGORIES, params[:food_category]), { prompt: "Categoría", include_blank: true } %>
+      <%= text_field_tag :zipcode, params[:zipcode], placeholder: "CÓDIGO POSTAL" %>
+      <%= button_tag(type: "submit", class: " ") do %>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      <% end %>
+  <% end %></div>
+</div>
+
+  <% @alimentos.includes(:user).each_slice(4) do |alimentos| %>
+  <div id="gridalimentos" class="row">
+
+    <% alimentos.each do |alimento| %>
+
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="alimento">
+          <%= link_to image_tag(alimento.image.url(:medium), :alt => " ", :class => "img-responsive"), adslug_path(id: alimento.id, slug: alimento.slug) %>
+          <% if alimento.is_give? %>
+            <span class="ad_status <%= alimento.status_class %>"><%= alimento.status_string %></span>
+          <% end %>
+          <h3 class="veinticinco"><%= link_to alimento.title, adslug_path(id: alimento.id, slug: alimento.slug) %></h3>
+          <p class="cantidad"><%= grams_to_kg(alimento.grams) %> kg - <span><%= alimento.food_category %></span></p>
+          <p>Código postal del alimento: <%= alimento.zipcode %></p>
+          <p>Fecha límite de entrega: <%= formated_date(alimento.pick_up_date) %></p>
+          <hr>
+
+          <div id="usuario" class="row">
+            <div id="izda" class="col-md-4">
+              <%= image_tag alimento.user.image.url(:thumb), :alt => "", :class => "avatar, img-responsive" %>
+            </div>
+            <div id="dcha" class="col-md-8">
+              <p class="username"><b><%= link_to alimento.user.username, profile_path(alimento.user.username) %></b></p>
+              <p>Total comida entregada: <span id="comidaentregada"><%= grams_to_kg(alimento.user.total_quantity) %> kg</span></p>
+            </div>
+
+            <div id="editar" class="col-md-12"><% if can? :update, alimento %>
+              <%= link_to ads_edit_path(alimento.id) do %>
+                <div class="submit"><%= t('nlt.edit_this_ad') %></div>
+              <% end %>
+            <% end %>
+            </div>
+          </div><!--usuario-->
+        </div><!--/alimento-->
+      </div><!--/col-md-3-->
+    <% end %>
+
+  </div><!--/gridalimentos-->
+  <% end %>
+
+<%= paginate(@alimentos) %>
+
+<div id="subereceta" class="row col-md-12 col-sm-12 col-xs-12">
+  <div class="col-md-10 col-sm-10 col-xs-10">
+    <span class="btn btn-rojo"><%= link_to 'Comparte alimentos', new_ad_path %></span>
+    <% unless user_signed_in? %>
+      <span class="enrojo">  (Para compartir alimentos es necesario iniciar sesión)</span>
+    <% end %>
+  </div>
+  <% unless user_signed_in? %>
+  <div class="login col-md-2 col-sm-2 col-xs-2">
+    <%= link_to t('nlt.login'), new_user_session_path, "data-no-turbolink" => true %>
+  </div>
+  <% end %>
+</div><!-- /subereceta -->

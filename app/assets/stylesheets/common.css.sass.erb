@@ -1,0 +1,2206 @@
+/* COMMON CODEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE STARTS HERE */
+
+body
+  color: $c-texto
+  background: $c-fondo
+  font-family: $font-general
+  font-size: 13px
+  line-height: 1.3em
+  @media all and (max-width: $break-medium)
+    p
+      font-size: 0.8em
+  @media all and (min-width: $break-large)
+    max-width: 1180px
+    margin: 0 auto     
+
+html img
+  vertical-align: middle
+  z-index: 360
+  padding-bottom: 10px
+
+.img-responsive
+  display: inline
+
+.row
+  margin: 0px
+a
+  color: $c-azul
+  &:link
+    text-decoration: none
+  &:visited
+    color: $c-azul
+  &.active
+    color: $c-rojo
+  &:hover
+    opacity: 0.5
+  &.actual
+    border-bottom: solid
+    border-width: 3px
+
+h1#title
+  @include titulosotros
+h1.title
+  @include titulos
+  font-size: 4em
+  margin-bottom: 0.5em
+h1.titulorojo
+  @include titulosfondorojos
+h1.title-inside  
+  @include titulosrojos
+h2
+  @include titulos
+  font-size: 3.5em
+  letter-spacing: 2px
+h3
+  @include titulosotros
+  font-size: 28px  
+h3.titulospeque
+  font-family: $font-gorda
+  color: $c-azul
+  font-size: 1.2em  
+  text-transform: uppercase
+  padding: 1em 0 0.5em 0
+
+h3.veinticinco
+  font-size: 22px
+  margin-top: 0
+  span
+    font-size: 0.7em
+    color: $c-azul
+ul, ol
+  margin: 0
+  padding: 0 0 0.5em 1em
+p
+  margin: 0 0 0.8em 0
+p.fecha
+  color: $c-rojo
+textarea
+  resize: none
+p.mayusc
+  text-transform: uppercase
+  font-weight: bold
+p.small
+  line-height: 1em
+  font-size: 70%  
+
+blockquote
+  font-size: 14px  
+  border-left: 3px solid #eee
+  line-height: 1.2em
+
+.enrojo
+  @include texto-rojo
+
+#rememberme-label
+  display: none
+
+#rememberme-element
+  display: inline
+
+.advice
+  position: relative
+  display: block
+  background: #FFFF99
+  font-weight: bold
+  padding: 5px
+  width: auto
+  font-size: 12px
+  clear: both
+  margin-bottom: 10px
+
+.close_advice a
+  color: #000
+
+form.searchbox
+  display: inline-block
+  width: auto
+  padding-right: 20px
+  top: 0px
+  dd
+    display: inline
+    margin: 0
+  input
+    padding: 1px
+    font-size: 12px
+    border: 1px
+    border-style: solid
+    border-color: #ddd
+  dl
+    margin: 0px !important
+
+#social-buttons
+  float: left
+  i
+    font-size: 1.5em
+    padding: 0.2em
+
+/**
+  * Formularios en general
+form input,
+form textarea
+  border: none
+  font-size: 1.1em
+  padding: 0.2em
+form textarea
+  resize: vertical
+form input[type="submit"], form input[type="button"], form button,
+.btn-default
+  -moz-border-radius: 0
+  -webkit-border-radius: 0
+  border-radius: 0
+  text-transform: uppercase
+  border: none
+a.btn-default
+  background: none
+  color: #FFF
+   
+#newinside form input, 
+#newinside form textarea
+  width: 100%
+  border: none
+
+#newinside
+  padding: 1em
+  dt
+    color: $c-azul
+    text-transform: uppercase
+    margin: 1em 0 0.1em 0
+  a
+    color: #FFF
+  a.world_link
+    color: $c-azul
+  form#new_idea
+    label
+      text-transform: uppercase
+      color: $c-azul
+    input
+      color: $c-texto
+    input[type="submit"]
+      color: #FFF
+    input[type="submit"]:hover
+      color: $c-verde
+  #comments_enabled-label,
+  #comments-element input[type="checkbox"]
+    width: auto
+    float: left
+  #comments-element
+    input[type="checkbox"]
+      margin: 1em 0 0 1em
+  #captcha-input-label
+    float: left
+    margin: 2em 0 0 0
+    clear: both
+  #captcha-element
+    clear: both
+  .actions
+    float: left
+    clear: both
+    margin-top: 2em
+    input[type="submit"]
+      background: $c-verde
+      border: 1px solid $c-verde
+      color: #FFF
+      a
+        color: #FFF
+    input[type="submit"]:hover
+      background: #FFF
+      color: $c-verde
+      border: 1px solid $c-verde
+      a
+        color: $c-verde
+#newinside 
+  #main
+    padding: 0
+  .edit_ad
+    padding: 0
+
+select#ad_food_category,
+select#ad_status,
+select#idea_category,
+select#ad_pick_up_date_3i,
+select#ad_pick_up_date_2i,
+select#ad_pick_up_date_1i
+  border: 1px solid $c-azul
+  background: #FFF
+  color: $c-azul
+  font-family: $font-gorda
+  text-transform: uppercase
+  padding: 0.2em
+input[type="file"]
+
+/**
+ * Layout.
+#header
+  float: left
+  clear: both
+  height: auto
+  margin: 0 auto
+  padding: 0
+  width: 100%
+  text-align: left
+  background-color: inherit
+  border: none
+  box-shadow: none
+  text-shadow: none
+
+#main
+  float: left
+  clear: both
+  margin: 0 auto
+  padding: 0 0 10px 0
+  @media all and (max-width: $break-large)
+    padding: 0 5px 10px 5px
+  width: 100%
+  text-align: left
+  ul li
+    list-style-type: disc
+    margin-left: 1em
+  ol li
+    margin-left: 1em
+
+#sidebar-right
+  position: relative  
+  float: left
+  clear: right
+  h4
+    @include titulosfondoazul
+    font-size: 0.9em
+
+/**
+ * Header Area.
+#rrss img
+  @media all and (min-width: $break-medium)
+    width: 30px
+  @media all and (min-width: $break-small) and (max-width: $break-medium)
+    width: 20px
+  @media all and (max-width: $break-small)
+    width: 10px
+
+#comida-izda div img,
+#comida-dcha div img
+  width: 80%
+  float: right
+
+#menu-cabecera
+  font-family: $font-gorda
+  font-size: 1.1em
+  padding: 0.3em
+  margin-bottom: 10px
+  background: $c-azul
+  color: #FFF
+  font-weight: bold
+  @media all and (min-width: $break-medium)
+    font-size: 1.1em
+  @media all and (min-width: $break-small) and (max-width: $break-medium)
+    font-size: 0.95em
+  @media all and (max-width: $break-small)
+    font-size: 0.75em
+  li
+    display: inline
+    padding: 0.7em
+    float: left
+    text-align: center
+    text-transform: capitalize
+    border-right: 1px solid #FFF
+  li:last-child
+    border-right: none
+  a
+    color: #FFF
+  a:hover
+    opacity: 0.8
+  li#rrss
+    padding: 0.2em
+    img
+      padding-bottom: 0
+  li#buscador 
+    input#search
+      width: 80%
+      padding: 1px
+  .glyphicon-search
+    background: $c-verde
+    padding: 3px
+
+#useractions
+  text-align: right
+
+.user_login_box
+  display: inline
+  float: left !important
+  right: 0 !important
+  top: 0 !important
+  a img
+    padding: 0
+
+img#logo
+  float: left
+  margin: 5px
+
+#header .site-name
+  z-index: -130
+  float: left
+  border: none
+  margin-top: 0px
+  padding-top: 10px
+  text-align: center
+  width: 100%
+  h1
+    font-size: 7em
+    font-family: $font-titulo
+    color: $c-azul
+    text-shadow: -5px 5px 1px rgba(255, 255, 255, 1)
+    @media all and (max-width: $break-medium)
+      font-size: 5em
+    @media all and (max-width: $break-small)
+      font-size: 3em
+
+#header .site-slogan
+  clear: both
+  position: relative
+  top: -20px
+  right: 25px
+  @media all and (max-width: $break-small)
+    top: -10px
+  float: right
+  padding-right: 15%
+  h2
+    font-family: $font-titulo
+    font-size: 4em
+    color: $c-verde
+    margin-top: 0
+    line-height: 0
+    @media all and (max-width: $break-medium)
+      font-size: 2em
+    @media all and (max-width: $break-small)
+      font-size: 1.5em
+
+#main-menu
+  clear: both
+  float: center
+  font-family: $font-gorda
+  font-size: 18px
+  text-transform: uppercase
+  text-align: center
+  margin: 1em auto
+  border-top: $b-rayas
+  border-bottom: $b-rayas
+  padding: 0
+  @media all and (min-width: $break-medium) and (max-width: $break-large)
+    font-size: 0.95em
+  @media all and (max-width: $break-medium)
+    font-size: 0.8em    
+  li
+    display: inline-block
+    padding: 0.5em 1em 0.5em 0
+  a
+    color: $c-azul
+  a.active
+    color: $c-rojo
+  button
+    background: none
+    text-transform: uppercase  
+    border: none
+  .btn-group
+    vertical-align: top  
+    .caret
+      border-left: 6px solid transparent
+      border-right: 6px solid transparent
+      border-top: 6px dashed $c-azul
+  .dropdown-menu
+    background: $c-fondo
+    text-transform: capitalize
+    font-size: 16px
+    border: none
+    box-shadow: none
+    li
+      padding: 0.5em 0
+      width: 100%
+      border-bottom: 2.5px dashed #FFF
+      display: block
+      @media all and (min-width: $break-medium) and (max-width: $break-large)
+        font-size: 90%
+      @media all and (max-width: $break-medium)
+        font-size: 80% 
+      a
+        display: inline-block
+        vertical-align: middle
+
+/**
+ ** Footer
+ **
+#footer
+  float: left
+  clear: both
+  line-height: 1.33em
+  margin: 0 auto
+  padding-top: 20px
+  border-top: 1px solid #ddd
+  background-color: #F2F2F2
+  width: 100%
+  h2
+    color: $c-verde
+    margin-top: 0
+  #siguenos
+    h2.enlinea
+      float: left
+      font-size: 2.5em
+    #rrssf
+      float: left
+      padding: 5px 0 0 20px
+      img
+        width: 30px
+    #logos
+      float: left
+      padding: 0
+      #logoprosalus
+        height: 100px
+      #logohambre0
+        height: 80px  
+
+#footertwo
+  margin: 0 auto
+  float: left
+  width: 100%
+  text-transform: capitalize
+  font-family: $font-gorda
+  @media all and (min-width: $break-medium)
+    font-size: 1.1em
+  @media all and (min-width: $break-small) and (max-width: $break-medium)
+    font-size: 0.95em
+  @media all and (max-width: $break-small)
+    font-size: 0.75em
+
+.links-left,
+.links-right
+  padding: 0.3em
+  li
+    display: inline
+    padding: 0.6em
+    float: left
+    text-align: center
+    margin-left: 0
+  a
+    color: #FFF
+  a:hover
+    opacity: 0.8   
+.links-left
+  float: left
+  background: $c-azul
+  li
+    border-right: 1px solid #FFF
+  li.last  
+    border-right: none
+
+.links-right
+  float: left
+  background: $c-verde
+  border-left: 1.5px solid #FFF
+  font-size: 0.8em
+  padding: 0.4em
+  line-height: 1.1em
+  color: #FFF
+  a
+    font-weight: bold
+    padding-left: 0.5em
+  a:hover
+    color: #000  
+  @media all and (min-width: $break-small) and (max-width: $break-medium)
+    padding: 1em
+
+/**
+ * Home
+#header
+.homearriba
+.homenotideas
+.homecontador
+  clear: both
+.homenotideas div
+  padding: 20px 20px 20px 0 
+  text-align: center
+.homearriba div p,
+.homenotideas div p
+  font-family: $font-gorda
+  text-align: left  
+.homearriba 
+  div
+    padding: 0 20px 0 0
+    text-align: center
+  div img
+    height: auto
+    width: 50%
+    @media all and (max-width: $break-medium)
+      width: 100%
+  div a:hover
+    opacity: 1
+    color: none
+  h3
+    @include titulos-home
+  div p
+    font-family: $font-gorda
+    font-size: 15px
+    line-height: 20px  
+.homecontador 
+  @include rayas
+  margin: 1em 0
+  padding: 0
+  text-align: center
+  #contador
+    float: left
+    width: 100%
+    line-height: 1em
+    padding: 0.6em 0 0.4em 0
+    font-family: $font-titulo
+    text-align: center
+    font-size: 6em
+    color: $c-verde
+    -ms-transform: skewX(-5deg) /* IE 9 */
+    -webkit-transform: skewX(-5deg) /* Safari */
+    -moz-transform: skewX(-5deg)
+    transform: skewX(-5deg)
+    @media all and (max-width: $break-medium)
+      font-size: 4em
+      padding: 0.3em 0 0.2em 0
+    @media all and (max-width: $break-small)
+      font-size: 3em
+  #contador-texto
+    float: left
+    line-height: 1em
+    padding: 2em 0
+    @include texto-rojo
+    text-align: left
+    font-size: 1.5em
+    @media all and (max-width: $break-medium)
+      padding: 1em
+      font-size: 1em
+      line-height: 1em
+    @media all and (max-width: $break-small)
+      font-size: 0.8em
+      line-height: 1em
+  div
+    padding: 0
+  img
+    padding: 3px 0
+    @media all and (max-width: $break-small)
+      display: none
+ 
+.homenotideas h3
+  text-align: left  
+.homenotideas div p
+  font-size: 13px
+  line-height: 1.3em
+  float: left
+  width: auto
+.homenotideas div.cuerpazo
+  padding: 0 
+  float: left 
+  a
+    color: $c-texto
+#tweets
+  padding: 20px 0 20px 0
+  .stream p 
+    font-size: 10px !important 
+
+/**
+  * Noticias, Iniciativas 
+#listado
+  float: left
+  margin-bottom: 1em
+  div
+    margin: 0 0 0.8em  
+  p
+    float: left
+    width: auto
+  .cuerpo a
+    color: $c-texto
+
+#cuerpo
+  i.fa
+    color: $c-azul    
+
+/**
+  * Recetas
+#submenu
+  margin: 0px 30px 10px 30px
+  li
+    display: inline-block
+    @include titulos
+    font-size: 40px
+    padding: 0 0.5em 0 0
+    margin: 0
+#gridrecetas
+  float: left
+  margin-bottom: 1em
+  div
+    margin: 0 0 0.8em  
+  p
+    float: left
+    width: auto
+  .cuerpo a
+    color: $c-texto
+.intro  
+  @include introducciones
+
+.ingredientes ul 
+  padding-left: 1em
+  li
+    margin-left: 0
+    list-style-type: disc
+
+#subereceta
+  clear: both
+  @include rayas
+  margin-top: 1em
+  padding: 0
+  div
+    padding: 0
+  .enrojo
+    padding-left: 10px  
+  .login
+    margin: 1em 0
+    a
+      float: right
+
+/**
+ * Alimentos
+#titalimentos
+  @include titulosfondorojos
+
+#buscadorads
+  float: right
+  width: auto
+  color: #000
+  font-size: 0.8em
+  padding: 0
+  input#search,
+  input#zipcode,
+  select#food_category
+    font-size: 1.1em
+    height: 100%
+    border: none
+    color: #000
+    @media all and (max-width: $break-medium)
+      margin: 2px 0
+  select#food_category
+    border: 1px solid #FFF
+    background: #FFF
+    text-transform: uppercase
+    color: #757575
+  button
+    background: $c-rojo
+    color: #FFF
+#menudcha
+  float: right
+  background: $c-rojo
+  width: 100%
+  margin: 10px 15px 0 0
+  text-align: right
+  @media all and (max-width: $break-medium)
+    float: left
+    margin: 0 15px 10px 15px
+    width: 100%
+#buscadorideas
+  padding: 5px 10px 5px 30px
+  width: 100%
+  input#search
+    width: 80%
+  button
+    background: $c-rojo
+    color: #FFF
+    font-size: 1em
+    padding: 0.2em
+
+#gridalimentos,
+#alimentospro
+  .alimento
+    background: #FFF
+    margin: 1em 0
+    padding: 1em
+    p
+      clear: both
+      margin-bottom: 0.3em
+    p.cantidad
+      @include texto-rojo
+    #usuario 
+      #izda
+        padding: 0
+        img
+          margin: 0
+          padding: 0
+          -webkit-border-radius: 15px
+          -moz-border-radius: 15px
+          border-radius: 15px
+          width: 60px
+      #dcha
+        padding: 0 5px
+      #editar
+        padding: 0.2em 0
+  hr
+    margin: 0.8em 0
+  .ad_status
+    float: right
+  #masads
+    float: left
+    padding-left: 15px
+    clear: both
+
+#recetario
+  img
+    width: 100%
+  .btn
+    @include btn-azul
+    width: 100%
+    margin: 0
+    padding: 0.5em 30%
+    white-space: pre-line
+    font-size: 1.1em
+
+#unalimento
+  .izda img
+    @include avatares
+    margin: 0
+    width: 80px
+  iframe
+    padding-bottom: 1em
+  .izda, .dcha
+    padding: 0 0 1em 0
+  #acciones 
+    .submit
+      margin: 0
+      @media all and (max-width: $break-small)
+        font-size: 0.7em
+        padding: 0.2em
+
+
+/**
+  * Organizaciones
+#introduccion
+  @include introducciones
+
+#buscadororg
+  input#search
+    float: left
+    color: #000
+    text-transform: uppercase
+    border: none
+  button
+    background: none
+    padding: 0
+    float: left
+    background: $c-rojo
+  .glyphicon-search
+    font-size: 1.5em
+    padding: 5px
+    color: #FFF
+#search-results
+  clear: both    
+  color: $c-texto
+  font-family: $font-general
+#listadoorg 
+  font-size: 15px
+  #unaorg
+    padding: 1em
+    p 
+      margin-bottom: 0.4em
+  a
+    font-family: $font-gorda
+#bodegon
+  margin: 2em 0 0 0 
+
+.fondoblanco
+  background: #f0efef
+  padding: 1em 1em
+  margin: 0 15px
+  .meta_info
+    span
+      float: left
+      margin: 0 0.5em
+      width: auto
+    
+#otros-ads
+  margin-top: 1em
+
+/**
+  * Páginas
+#sitemap li
+  font-size: 16px
+  line-height: 1.5em
+
+/**
+  * Como funciona
+.funcionatexto
+  @include introducciones
+  text-align: center
+
+h1.funciona
+  font-family: $font-gorda
+  color: $c-rojo
+  margin: 0 0 0.3em 0
+  text-align: center
+  text-transform: uppercase
+  margin: 1em 0
+
+#dar,
+#recibir
+  text-align: center
+  margin-bottom: 1em
+  h3
+    clear: both
+    margin-top: 1em
+  p
+    padding: 0
+    text-align: left
+#dar h3
+  color: $c-azul
+#recibir h3
+  color: $c-verde
+
+/**
+ * Registrate
+#registrate
+  text-align: center
+  p.enrojo
+    padding: 0 3em    
+  a
+    font-weight: bold
+  .reg-item
+    width: 100%
+    height: auto
+    padding: 0.5em 0
+    clear: both
+    dd, dt
+      float: left
+      width: 50%
+    dt
+      color: $c-azul
+      text-transform: uppercase
+      label
+        float: right
+        padding: 0 1em 0 0
+    dd  
+      margin: 0 0 1em 0
+      input
+        float: left
+        width: auto
+  .g-recaptcha
+    padding: 0 25%
+  #new_user input[type="submit"]
+    background: $c-verde
+    border: 1px solid $c-verde
+    color: #FFF
+    font-weight: bold
+    padding: 6px 12px
+    margin: 1em 0 0 0
+    width: auto
+  #new_user input[type="submit"]:hover
+    background: #FFF
+    color: $c-verde
+    border: 1px solid $c-verde
+  .insertarimagen
+    border: 1px solid $c-azul
+    font-weight: bold
+    width: auto
+    text-transform: uppercase  
+  .insertarimagen:hover
+    background: #FFF
+    opacity: 1
+    color: $c-azul
+
+
+#editprofile
+  .reg-item
+    margin: 0 0 1em 0
+    padding: 0.5em 0
+    clear: both
+    width: 100%
+    p
+      float: right
+  label
+    text-transform: uppercase
+    color: $c-azul
+    padding: 0 1em 0 0
+    text-align: right
+    @media all and (max-width: $break-medium)
+      text-align: left
+  label, input
+    float: left
+    width: 50%
+    @media all and (max-width: $break-medium)
+      width: 100%
+  p#img
+    float: left
+    width: 100%
+    text-align: center
+  #pss
+    border-top: 1px solid #eee
+    padding: 1em 0 0 0
+
+
+
+  .actions input
+    width: auto
+
+
+
+/**
+ * Login y contacto
+#contactblock,
+#loginblock
+  background: $c-azul
+  color: #FFF
+  padding: 3.5em
+  h1#title
+    font-family: $font-gorda
+    color: #FFF
+    margin: 0
+  fieldset > legend
+    border: none
+  label
+    text-transform: uppercase
+    padding-top: 1em
+  input  
+    color: $c-azul
+    width: 100%
+  dd
+    margin-bottom: 1em
+  p
+    margin-top: 1em
+  a
+    color: #FFF
+    font-weight: bold 
+
+/**
+ * Botones
+.btn
+  -webkit-border-radius: 0
+  -moz-border-radius: 0
+  border-radius: 0 
+  background: $c-azul
+  font-size: 0.9em
+  a
+    color: #FFF
+.btn-rojo
+  @include btn-rojo
+.btn-rojo:hover
+  @include btn-rojo-hover
+.btn-verde
+  @include btn-verde
+.btn-verde:hover  
+  @include btn-verde-hover
+.btn-azul
+  @include btn-azul
+.btn-azul:hover  
+  @include btn-azul-hover
+#botones
+  padding: 0
+.btn-ppales
+  text-align: center
+  height: 40px
+  margin-bottom: 1em
+  font-size: 1.2em
+  letter-spacing: 1px
+  @media all and (max-width: $break-medium)
+    font-size: 0.9em
+  .btn
+    width: 100%
+    height: inherit
+    padding: 10px
+  #googleplay,
+  #ios
+    //background: url("propias/googleplay.png") no-repeat 20% 50% $c-azul
+    //@media all and (max-width: $break-large)
+    //  background-position: 10% 50%
+    img
+      height: 100%
+  #googleplay:hover,
+  #ios:hover
+    @include btn-azul-hover
+.btn-ppales:first-child
+  padding-left: 0
+  padding-right: 15px  
+.btn-ppales:last-child
+  padding-left: 15px
+  padding-right: 0
+
+#contactblock,
+#loginblock
+  .entrar
+    input[type="submit"]
+      background: $c-verde
+      border: 1px solid $c-verde
+      color: #FFF
+      font-weight: bold
+      padding: 6px 12px
+      margin: 1em 0 0 0
+      width: auto
+    input[type="submit"]:hover
+      background: #FFF
+      color: $c-verde
+      border: 1px solid $c-verde
+  .boton-registro
+    border: 1px solid #FFF
+    font-weight: bold
+    width: auto
+  .boton-registro:hover
+    background: #FFF
+    opacity: 1
+    color: $c-azul
+
+.login
+  float: right
+.login a
+  font-weight: bold
+  text-transform: uppercase
+  padding: 6px
+  width: auto
+  background: $c-azul
+  border: 1px solid $c-azul
+  color: #FFF
+.login a:hover
+  background: #FFF
+  color: $c-azul
+  border: 1px solid $c-azul
+  opacity: 1
+
+.submit
+  width: auto
+  height: auto
+  clear: both
+  font-weight: bold
+  padding: 6px 12px
+  margin: 1em 0 0 0
+  background: $c-verde
+  border: 1px solid #FFF
+  color: #FFF
+.submit:hover
+  background: #FFF
+  border: 1px solid $c-verde
+  color: $c-verde
+.actions
+  margin: 0.5em 0
+  width: 10em
+  input[type="submit"]
+    background: $c-verde
+    border: 1px solid $c-verde
+    color: #FFF
+    a
+      color: #FFF
+  input[type="submit"]:hover
+    background: #FFF
+    color: $c-verde
+    border: 1px solid $c-verde
+    a
+      color: $c-verde
+
+#contactblock 
+  .error_messages
+    background: #FFF
+    color: $c-rojo
+    padding: 0.5em
+    h3
+      margin-top: 0
+  #contact_message
+    width: 100%
+    color: $c-azul
+
+input#delete_multiple_button
+  width: auto
+  @include btn-rojo
+
+input#delete_multiple_button:hover
+  @include btn-rojo-hover
+
+/** 
+ * Profile y mensajes
+#profile h1#title 
+  padding-left: 15px
+#profile-block
+  float: left
+  .profile-header
+    background: $c-azul
+    float: left
+    width: 100%
+    color: #FFF
+    text-transform: uppercase
+    font-weight: bold
+    .col-md-8
+      padding: 6px
+    .col-md-4
+      border-left: 1px solid #FFF
+      background: $c-verde
+      text-align: center
+      padding: 6px
+      a
+        color: #FFF
+  .profile-body
+    float: left
+    background: #FFF  
+    padding: 1em
+  .username
+    font-weight: bold
+    font-size: 1.5em
+  .izda
+    float: left
+    padding: 0 
+    img   
+      @include avatares
+      margin: 0
+  .dcha
+    float: left
+    padding: 0 0 0 2em
+  .abajo
+    padding: 0
+    margin: 1em 0 0 0
+#profile-menu
+  float: left
+  width: 100%
+  li    
+    display: inherit
+#profile 
+  .ad_excerpt
+    fieldset
+      margin: 0 0 1em 0
+    input
+      margin: 0 0 0.5em 0
+  .ad_excerpt:hover      
+    background: none
+
+#comidaentregada
+  font-weight: bold
+  font-size: 1.1em
+
+ul#insidenav
+  li
+    display: block
+    margin: 0.2em 0
+    padding: 0.5em
+    text-transform: uppercase
+    font-weight: bold
+
+.title-listados
+  @include titulosfondoazul
+  font-size: 1.2em
+  padding: 6px
+table.listados
+  width: 100%
+  border-collapse: separate
+  border-spacing: 0 1em
+  tr
+    width: 100%
+  th, td
+    padding: 5px
+    background: #FFF
+    vertical-align: middle
+  td.botones
+    width: 20%
+  p
+    margin: 0 0 0.5em 0
+  p.grande  
+    font-size: 1.3em
+  p.ad_status
+    display: block
+    clear: both    
+  .btn  
+    font-size: 0.8em
+    padding: 0.5em
+    a
+      padding: 0 30%
+#mensajescabecera
+  margin: 0 0 1em 0
+  line-height: 1em
+  h1
+    font-size: 2em
+    margin-bottom: 1em
+
+#listamensajes 
+  img
+    width: 60px
+    @include avatares
+  .bubble
+    -webkit-border-radius: 15px
+    -moz-border-radius: 15px
+    border-radius: 15px
+    background: #FFF
+.message-excerpt
+  width: 100%
+  display: block
+  float: left
+  margin-bottom: 20px
+  position: relative
+.message-from-left
+  text-align: center
+  width: 120px
+  float: left
+  font-size: 0.8em
+  display: block
+.message-from-right
+  text-align: center
+  width: 120px
+  float: right
+  font-size: 0.8em
+.message-container-left
+  font-size: 0.9em
+  position: relative
+  margin-right: 120px    
+.triangle-me
+  position: absolute
+  background: image-url("pico-white-left.png") no-repeat 0 0
+  height: 10px
+  top: 40px
+  left: -11px
+  width: 12px
+.triangle-other
+  position: absolute
+  background: image-url("pico-white-right.png") no-repeat 0 0
+  height: 10px
+  top: 40px
+  right: -11px
+  width: 12px
+.message-from-left img, .message-from-right img
+  margin-left: 30px
+  margin-right: 30px
+.message-container-right
+  font-size: 0.9em
+  position: relative
+  margin-left: 120px
+.bubble
+  min-height: 23px
+  border: 1px solid #CCC
+  -webkit-border-radius: 3px
+  padding: 10px 10px 30px 10px
+.bubble-reply
+  background: #FFF
+  border: 1px solid #CCC
+  padding: 10px
+  -webkit-border-radius: 15px
+  -moz-border-radius: 15px
+  border-radius: 15px
+.message-date
+  position: absolute
+  bottom: 10px
+  right: 10px
+  color: #666
+  font-size: 0.9em
+  font-weight: normal
+  float: right
+  text-align: right
+
+/**
+ * Faqs
+#faq h3
+  font-size: 20px
+
+/**
+ * Comentarios
+#comentarios
+  width: 100%
+  border-top: 1px dashed #FFF
+  height: auto
+  padding: 1em 0
+  float: left
+.ad_comments
+  float: left
+  width: 100%
+  padding-top: 1em
+
+.ad_comment
+  float: left
+  font-size: 1em
+  background: #FFF
+  margin: 0 0 0.5em 0
+  width: 100% !important
+  span
+    clear: left
+    float: left
+    padding: 5px
+  .izda, .dcha
+    float: left
+  .izda 
+    img
+      @include avatares
+      width: 60px
+
+.ad_comments h5
+  float: left
+  font-size: 1.2em
+  font-weight: bold
+  padding-top: 10px
+  margin-bottom: 10px !important
+
+.ad_comment_form
+  clear: left
+  float: left
+  margin-bottom: 10px
+  margin-top: 10px
+  #body
+    width: 100%
+
+/*paginator  **********
+.pagination
+  clear: both
+  font-weight: bold
+  margin-bottom: 1em
+  padding-top: 10px
+  text-align: left
+  font-size: 1em
+  display: block
+  width: auto
+  border: 0
+  list-style: none
+  margin-right: 2px
+  span
+    border-right: solid 1px $c-azul
+    text-align: center
+    padding: 0.2em 0.2em
+  a
+    text-decoration: none
+  .current
+    display: inline-block
+    color: $c-rojo
+    text-align: center
+
+
+#next
+  width: 85px
+  display: inline-block
+
+#prev
+  display: inline-block
+  margin-right: 0
+
+/**********************************NOLOTIRO SIN TOCAR
+/**
+  * Ads
+.ad_create_tab
+  position: absolute
+  right: 0px
+  top: 55px
+
+.ad_create_tab_home
+  position: absolute
+  right: 0px
+  top: 0px
+
+.ad_change_location_home
+  text-align: right
+  font-weight: bold !important
+  margin-bottom: 20px
+
+.ad_create_tab a
+  background: #97dc3c
+  background: -moz-linear-gradient(top, #73C017 31%, #67B213 67%, #51990C 87%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(31%,#73C017), color-stop(67%,#67B213), color-stop(87%,#51990C))
+  background: -webkit-linear-gradient(top, #73C017 31%,#67B213 67%,#51990C 87%)
+  background: -o-linear-gradient(top, #73C017 31%,#67B213 67%,#51990C 87%)
+  background: -ms-linear-gradient(top, #73C017 31%,#67B213 67%,#51990C 87%)
+  background: linear-gradient(to bottom, #73C017 31%,#67B213 67%,#51990C 87%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#73C017', endColorstr='#51990C',GradientType=0 )
+  overflow: hidden
+  color: #fff
+  font-size: 1.2em
+  font-weight: bold
+  border: 1px solid #ddd
+  padding-left: 10px
+  padding-right: 10px
+  padding-top: 5px
+  padding-bottom: 5px
+  text-align: center
+  width: auto
+  display: block
+
+.ad_edit
+  padding-bottom: 10px
+
+.ad_status
+  display: inline-block
+  color: #fff
+  padding: 3px
+  font-weight: bold
+  font-size: 11px
+  border: 0px
+  margin-right: 4px
+
+.available
+  background-color: $c-verde
+
+.booked
+  background-color: $c-booked
+
+.delivered
+  background-color: $c-rojo
+
+.ad_list_image
+  z-index: 300
+  float: right
+  padding-left: 4px
+  width: 100px
+  padding-top: 10px
+
+.no_results
+  display: block
+  float: left
+  padding-left: 18px
+  padding-right: 18px
+  padding-top: 0
+  margin-top: 10px
+
+.filter_status
+  z-index: 20
+  float: left
+  padding: 10px 18px 12px 18px
+  width: 100% !important
+
+/* styles for adds
+
+.ad_excerpt_title
+  font-size: 1.3em
+  font-weight: bold
+  margin-bottom: 3px
+
+.ad_excerpt_woeid
+  font-size: 1em
+  font-weight: bold
+  margin-bottom: 3px
+
+.ad_excerpt
+  float: left
+  border-bottom: 1px solid #DDD
+  padding: 14px 18px 22px 18px
+  margin: 0
+  width: 100%
+  h4
+    font-size: 1.3em
+    font-weight: bold
+    margin-bottom: 6px
+  &:hover
+    background-color: #FFFFCC
+
+.ad_date
+  color: #666
+  font-size: 0.9em
+  font-weight: normal
+  padding-bottom: 5px
+
+.ad_excerpt_show
+  display: block
+  float: left
+
+.delete_message
+  display: inline-block
+  float: right
+  padding: 5px
+  border: 1px solid #ddd
+  background-color: #fff
+
+.ad_meta_info
+  position: relative
+  display: block
+  padding: 3px
+  clear: left
+  text-align: left
+  font-size: 11px
+  margin-top: 5px
+  b
+    margin-right: 10px
+
+.edit_ad
+  padding-left: 18px
+
+.rss
+  float: left
+  padding-left: 18px
+  margin-bottom: 10px
+
+.sharelinks
+  position: relative
+  top: 10px
+  clear: right
+  text-align: right
+  font-size: .7em
+  margin-bottom: 15px
+  #social-buttons
+    float: left
+
+.location_name
+  display: inline-block
+  margin-bottom: 14px
+
+.give-want
+  position: relative
+  display: inline-block
+  width: auto
+  float: right
+  right: 5px
+  text-align: center
+  background-color: #fff
+  font-size: 2em
+  font-weight: bold
+  right: 10px
+  padding-left: 14px
+  padding-right: 14px
+  padding-top: 8px
+  padding-bottom: 12px
+  margin-bottom: 10px
+
+.errors, #error_explanation
+  color: red
+
+#error, .error, .alert, .notice, .success, #error_explanation
+  padding: .8em
+  margin-bottom: 1em
+  margin-top: 1em
+  border: 1px solid #ddd
+
+#error, .error, #error_explanation, .alert
+  background: #FBE3E4
+  color: #8a1f11
+  border-color: #FBC2C4
+  a
+    color: #8a1f11
+
+.notice
+  background: #FFF6BF
+  color: #514721
+  border-color: #FFD324
+  a
+    color: #514721
+
+.success
+  background: #FFF
+  color: #264409
+  border-color: #C6D880
+  a
+    color: #264409
+
+/* styles for threads - now mails and maillist
+
+.thread_excerpt
+  display: block
+  float: left
+  border-bottom: 1px solid #ddd
+  padding: 11px 10px 11px 22px
+  line-height: 80px
+  h4
+    font-size: 1.3em
+    font-weight: bold
+    line-height: 80px
+  &:hover
+    background-color: #FFFFCC
+
+.thread-from
+  width: 185px
+  float: left
+  height: 80px
+
+.thread-messages
+  width: 34px
+  float: left
+  height: 34px
+  line-height: 34px
+  padding: 2px 8px
+  border: 1px solid #DDDDCA
+  text-align: center
+  background: image_url("envelope.png") no-repeat 0 0
+  margin: 20px 8px 20px 18px
+  &:hover .unread-hover-info
+    display: block
+
+.unread-hover-info
+  display: none
+
+.thread-subject
+  width: 280px
+  float: left
+  height: 80px
+  margin-right: 20px
+
+.thread-date
+  width: 130px
+  color: #666
+  font-size: 0.9em
+  font-weight: normal
+  float: left
+  height: 80px
+  text-align: right
+
+.thread-delete
+  width: 15px
+  padding-left: 10px
+  height: 80px
+  float: right
+
+#mail-list
+  list-style: none
+  padding: 5px
+  .sender
+    width: 150px
+  .mail
+    background-color: #fcfcfc
+    border-top: 1px solid #efefef
+    border-left: 1px solid #efefef
+    border-right: 1px solid #efefef
+    padding: 5px
+    span
+      vertical-align: middle
+    &:last-child
+      border-bottom: 1px solid #efefef
+  .unread
+    td
+      font-weight: bold
+    a
+      font-weight: bold
+  a
+    text-decoration: none
+    font-weight: normal
+  .icon
+    background-repeat: no-repeat
+    padding-left: 4px
+    padding-bottom: 5px
+  .bookmark
+    background-image: image-url('icons/star.png')
+  .nobookmark
+    background-image: image-url('icons/nostar.png')
+  .labels
+    border: 1px solid white
+    padding: 2px
+    margin: 0px 9px 0px 9px
+    background-color: #34AD00
+    color: white
+    font-size: 11px
+    font-weight: normal
+    text-align: center
+
+
+.home_location_change
+  display: inline
+  position: absolute
+  float: left
+  width: 600px
+  right: 0px
+  top: 43px
+
+.section_users
+  float: left
+  position: relative
+  display: inline-block
+  padding: 10px
+  width: 150px
+
+.section_locations
+  float: left
+  position: relative
+  display: inline-block
+  padding: 10px
+  margin-left: 15px
+  width: 250px
+
+.section_ads
+  float: left
+  position: relative
+  display: inline-block
+  padding: 10px
+  padding-left: 24px
+  width: 468px
+
+.home_location_change
+  form
+    display: inline-block
+    padding-right: 20px
+    width: auto
+  &.form dd
+    display: inline
+    margin: 0
+
+.ad_excerpt_home
+  float: left
+  padding-top: 14px
+  padding-bottom: 10px
+  width: 100%
+  border-bottom: 1px solid #DDD
+  h4
+    font-size: 1.4em
+    font-weight: bold
+
+
+#location_header_section
+  z-index: 100
+  display: block
+  background-color: #E5F2FF
+  padding-top: 15px
+  padding-bottom: 6px
+  padding-left: 20px
+  border: 1px solid #ddd
+
+.world_link
+  display: inline-block
+  font-weight: bold
+  margin-top: 8px
+
+#default_header_section
+  /*display: block
+  clear: both
+  background-color: #FFFFCC
+  padding-top: 16px
+  padding-bottom: 16px
+  padding-left: 20px
+  border: 1px solid #ddd
+  margin-bottom: 20px
+  h2
+    font-size: 1em
+    font-weight: bold
+    margin-bottom: 1.5em
+    padding-left: 0px
+
+#norm
+  display: inline-block
+  text-align: center
+
+.disabled
+  border-color: #fff !important
+  color: #666
+
+
+.page_footer
+  position: absolute
+  bottom: 20px
+  width: 99%
+  text-align: center
+  clear: both
+  color: #999
+
+/* begin css tabs
+
+ul#tabnav
+  text-align: left
+  /* set to left, right or center
+  margin: 1em 0 0 0
+  font-size: 14px
+  font-weight: bold
+  border-bottom: 1px solid #ddd
+  list-style-type: none
+  padding: 3px 15px
+  li
+    display: inline
+    a
+      padding: 3px 10px
+      /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above
+      border: 1px solid #ddd
+      /* set border COLOR as desired; usually matches border color specified in #tabnav
+      /*background-color: #fff;
+      /* set unselected tab background color as desired
+      /*color: #000;
+      /* set unselected tab link color as desired
+      margin-right: 4px
+      /* set additional spacing between tabs as desired
+      text-decoration: none
+      border-bottom: none
+  a:hover
+    color: #000 !important
+
+a#tab_active
+  color: #000 !important
+
+/* end css tabs
+
+/* Base Superbox Styles *****************************************************************
+
+#superbox-overlay
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 9998
+  width: 100%
+  height: 100%
+
+#superbox-wrapper
+  position: fixed
+  z-index: 9999
+  top: 0
+  display: table
+  width: 100%
+  height: 100%
+
+#superbox-container
+  position: relative
+  display: table-cell
+  width: 100%
+  height: 100%
+  margin: 0
+  padding: 0
+  vertical-align: middle
+
+#superbox
+  margin: 0 auto
+  padding: 0
+
+#superbox-container .loading
+  margin: 0
+  text-align: center
+
+/* IE7
+
+*
+  &:first-child + html
+    #superbox-container
+      position: absolute
+      top: 50%
+      display: block
+      height: auto
+    #superbox
+      position: relative
+      top: -50%
+      display: block
+  html
+    #superbox-container
+      position: absolute
+      top: 50%
+      display: block
+      height: auto
+    #superbox
+      position: relative
+      top: -50%
+      display: block
+    #superbox-overlay
+      position: absolute
+      height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight + 'px' : document.body.offsetHeight + 'px')
+    #superbox-wrapper
+      position: absolute
+      margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px')
+
+/* IE6 - Thanks to Thickbox for IE expressions
+
+#superbox-container .loading
+  text-align: center
+  font-size: 40px
+  color: #fff
+
+#superbox
+  padding: 10px
+  background: #fff
+
+#superbox-innerbox
+  padding: 10px 0
+
+#superbox.image
+  text-align: center
+
+/* nolotiro Theme
+
+#superbox-overlay
+  background: #e0e4cc
+
+/*#superbox-overlay{background:#fff;}
+
+#superbox-container .loading
+  width: 32px
+  height: 32px
+  margin: 0 auto
+  text-indent: -9999px
+  background: image-url('loader.gif') no-repeat 0 0
+
+#superbox
+  .close a
+    float: right
+    padding: 0 5px
+    line-height: 20px
+    background: #333
+    cursor: pointer
+    span
+      color: #fff
+  .nextprev
+    a
+      float: left
+      margin-right: 5px
+      padding: 0 5px
+      line-height: 20px
+      background: #333
+      cursor: pointer
+      color: #fff
+    .disabled
+      background: #ccc
+      cursor: default
+
+.xdebug-var-dump
+  clear: both
+  border: 1px silver solid
+  padding: 4px
+
+.container
+  width: 90%
+
+#cookie-bar
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  z-index: 99999
+
+.alert-close
+  float: right
+  top: 0
+  position: relative
+
+#new_user
+  input[type='submit']
+    margin-top: 10px
+    margin-bottom: 30px
+
+.mobile
+  display: none !important
+
+.first-visit
+  margin-top: 3em
+
+.ads-show
+  float: right
+  width: 300px
+  height: 250px
+
+#mailboxer_message_body
+  width: 90%
+  height: 100px
+
+#social-buttons
+  display: block
+
+#messages-thread
+  min-height: 300px
+
+.section_ads .ad_excerpt_home
+  border-bottom: none
+
+/** RESPONSIVE **************************************************************/
+
+@media only screen and (max-width: 779px)
+  #header
+    display: inline-block
+    margin-top: 2%
+
+  #main
+    margin-left: auto
+    margin-right: auto
+    clear: both
+
+  #contador
+    font-size: 80%
+
+  .section_ads
+    padding: 0px
+    width: 95%
+    padding-left: 4%
+
+  .site-name
+    padding-top: 20px
+    h1
+      font-size: 3em
+  .site-slogan
+    h2
+      font-size: 2em
+  h3
+    font-size: 2em
+  #header .container
+    font-size: 1em
+
+  div.info.js-alert-first-visit.hide
+    margin-top: 5em
+
+  .user_login_box
+    float: left !important
+    right: 0 !important
+
+  .span-15
+    width: 95%
+    padding-left: 4%
+
+  #default_header_section br
+    display: none
+
+  #location_header_section br
+    display: none
+
+  .ad_change_location_home
+    top: 5px
+    right: 25px
+
+  #redes
+    width: 100%
+  #social-buttons
+    width: 100%
+    margin-left: 0px
+
+  #facebook-button
+    padding: 0px
+    margin: 0px
+    display: inline
+
+  #twitter-button
+    padding: 0px
+    display: inline
+
+  .ad_excerpt
+    padding: 0px
+    margin: 10px 10px
+    width: 95%
+
+  .span-18
+    margin-left: 10px
+    margin-top: 10px
+
+  #contact_message
+    width: 95%
+
+  .filter_status
+    padding: 0px
+    width: 95%
+
+  #location_header_section
+    width: 100%
+
+  .span-16
+    width: 100%
+
+  #default_header_section
+    width: 100%
+    margin-left: 4%
+
+  .home_location_changef
+    margin-top: 1em
+
+  .notice
+    width: 90%
+    margin-left: 4%
+
+  .mobile
+    display: inline-block !important
+
+  .desktopeader
+    display: none !important
+
+  .info
+    width: 90%
+    margin-left: 4%
+
+  #header
+    .ad_create_tab
+      position: static
+      margin-top: 40px
+    .ad_create_tab_home
+      top: 43px
+
+  #ad_body, textarea
+    width: 95% !important
+
+  #list-ads-profile .info
+    display: inline-block
+
+@media only screen and (min-width: 500px) and (max-width: 779px)
+  .ad_create_tab
+    width: 75%
+    float: right
+
+@media only screen and (max-width: 530px)
+  .pagination
+    width: 85% !important
+
+  .give-want
+    display: block
+
+@media only screen and (max-width: 500px)
+
+  #header
+    .ad_create_tab
+      position: static
+      margin-top: 30px
+
+  .message-from-left, .message-from-right
+    display: none
+
+  .message-container-left, .message-container-right
+    margin: 0px
+
+  .home_location_change
+    position: relative
+    display: inline-block
+    width: 100%
+    margin-top: 0px
+    top: 0px
+
+@media only screen and (max-width: 350px)
+
+  .ad_change_location_home
+    top: 50px
+
+  #header
+    .ad_create_tab
+      position: static
+      margin-top: 50px
+
+  .home_location_change
+    position: relative
+    display: inline-block
+    width: 100%
+    margin-top: 0px
+    top: 0px
+
+/* Language box
+.select_language_box
+  margin-top: -0.4em
+  padding: 4px
+  select
+    font-size: 0.9em
+    font-weight: bold
+    background-color: #fff
+#select_language_box
+  a
+    padding: 2px
+    padding-left: 4px
+    padding-right: 0px
+    line-height: 16px
+    height: 20px
+    display: none
+    width: 100%
+    text-decoration: none !important
+  img
+    text-decoration: none !important
+    border: 0
+    right: 2px
+    clear: left
+    vertical-align: baseline
+  a span.lang_name
+    display: inline-block
+    text-decoration: none
+  &:hover a
+    display: block
+
+.deployed_languages a
+  display: block
+
+#select_language_box
+  .lang.active
+    display: block
+    position: absolute
+    top: 0px
+  a:hover
+    background-color: #999 !important
+    text-decoration: none !important
+    color: #fff !important
+#select_language_box
+  position: absolute
+  top: 0px
+  float: right
+  right: 0px
+  border: 1px solid white
+  display: inline-block
+  height: 12px
+  overflow: hidden
+  vertical-align: top
+  width: 92px
+  padding-top: 24px
+  z-index: 400
+  &:hover
+    border: 1px solid #ddd
+    background-color: #fff
+    height: auto
+
+.deployed_languages
+  border: 1px solid #ddd
+  background-color: #fff
+  height: auto

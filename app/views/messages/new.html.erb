@@ -1,0 +1,50 @@
+<% title = t('mailboxer.new.title', user: @recipient.username) %>
+<% content_for :meta_title, title %>
+
+<div id="newinside" class="col-md-8 col-md-offset-2">
+  <h1 class="title-listados"><%= title %></h1>
+
+<div id="main">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <%= form_for @message do |f| %>
+      <fieldset>
+        <legend>
+          <%= t('mailboxer.new.legend') %>
+        </legend>
+        <% if @message.errors.any? %>
+          <div class="error">
+            <h2>
+              <%= t('mailboxer.new.errors', errors: pluralize(@message.errors.count, "error")) %>
+            </h2>
+            <ul>
+              <% @message.errors.full_messages.each do |msg| %>
+                <li>'#{ msg }'</li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <dl>
+          <dt id="subject-label">
+            <%= f.label :subject, t('mailboxer.new.subject') %>
+          </dt>
+          <dd id="subject-element">
+            <% if params['subject'] %>
+              <%= f.text_field :subject, value: params['subject'] %>
+            <% else %>
+              <%= f.text_field :subject %>
+            <% end %>
+          </dd><br/>
+          <dd id="body-element">
+            <%= f.text_area :body, size: '80x3', maxlength: 1500, required: true %>
+            <p class="description">
+              <%= t 'mailboxer.new.body_max' %>
+            </p>
+          </dd>
+        </dl>
+        <%= f.hidden_field :recipients %>
+        <div class="actions"><%= f.submit t('mailboxer.new.submit') %></div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+</div><!--/newinside-->

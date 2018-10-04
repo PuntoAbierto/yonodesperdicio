@@ -1,0 +1,164 @@
+/** Definiciones **/
+
+@font-face
+  font-family: 'Schuss'
+  src: asset-url('SchussHandITC_Bold.ttf')  format('truetype')
+  font-weight: normal
+@font-face
+  font-family: 'JustAnotherHand'
+  src: asset-url('JustAnotherHand.ttf')  format('truetype')
+  font-weight: bold  
+@font-face
+  font-family: 'OpenSans-Regular'
+  src: asset-url('OpenSans-Regular.ttf') format('truetype')
+  font-weight: 400
+@font-face
+  font-family: 'OpenSans-Semibold'  
+  src: asset-url('OpenSans-Semibold.ttf') format('truetype')
+  font-weight: 600
+@font-face
+  font-family: 'FontAwesome'
+  src: asset-url('FontAwesome.otf')
+  font-weight: normal
+
+$font-general: 'OpenSans-Regular', sans-serif
+$font-gorda: 'OpenSans-Semibold', sans-serif
+$font-titulo: 'JustAnotherHand'
+$c-texto: #012b5a
+$c-azul: #005cb8
+$c-verde: #6abf4a
+$c-rojo: #e55333
+$c-fondo: #dedddc
+$b-rayas: 2.5px dashed #FFF
+$c-booked: #ff9933
+
+@mixin titulos
+  font-family: $font-titulo
+  letter-spacing: 1px
+  color: $c-verde
+  margin-bottom: 0
+  line-height: 1.2em
+  padding-left: 0px
+  -ms-transform: skewX(-10deg) /* IE 9 */
+  -webkit-transform: skewX(-10deg) /* Safari */
+  -moz-transform: skewX(-10deg)
+  transform: skewX(-10deg)
+
+@mixin titulosrojos
+  font-family: $font-titulo
+  letter-spacing: 1px
+  font-size: 4em
+  color: $c-rojo
+  margin-bottom: 0
+  -ms-transform: skewX(-10deg) /* IE 9 */
+  -webkit-transform: skewX(-10deg) /* Safari */
+  -moz-transform: skewX(-10deg)
+  transform: skewX(-10deg)
+@mixin titulos-home
+  font-family: $font-titulo
+  letter-spacing: 2px
+  font-size: 40px
+  clear: both
+  margin: 0
+  -ms-transform: skewX(-5deg) /* IE 9 */
+  -webkit-transform: skewX(-5deg) /* Safari */
+  -moz-transform: skewX(-5deg)
+  transform: skewX(-5deg)
+  text-shadow: -0.3px 0 $c-azul, 0 0.3px $c-azul, 0.3px 0 $c-azul, 0 -0.3px $c-azul
+  a
+    color: $c-azul
+@mixin titulosotros
+  font-family: $font-gorda
+  font-size: 28px
+  color: $c-rojo
+  margin: 0 0 0.5em 0
+@mixin titulosfondoazul
+  font-family: $font-gorda
+  background: $c-azul
+  color: #FFF
+  text-transform: uppercase
+  padding: 2px 5px
+  margin: 0 0 0.5em 0
+@mixin titulosfondorojos
+  font-family: $font-gorda
+  background: $c-rojo
+  color: #FFF
+  text-transform: uppercase
+  font-size: 1.2em
+  padding: 5px
+  margin: 0 15px 1em 15px  
+
+@mixin rayas
+  border-top: $b-rayas
+  border-bottom: $b-rayas
+@mixin texto-rojo
+  color: $c-rojo
+  font-family: $font-gorda
+  line-height: 26px
+@mixin introducciones
+  font-family: $font-gorda
+  font-size: 15px
+  line-height: 1.5em
+  margin: 0 0 1.5em 0
+
+@mixin avatares
+  margin: 5px
+  padding: 0
+  -webkit-border-radius: 15px
+  -moz-border-radius: 15px
+  border-radius: 15px
+
+@mixin btn-rojo
+  font-weight: bold
+  text-transform: uppercase
+  margin: 1em 0
+  background: $c-rojo
+  color: #FFF
+  a
+    color: #FFF
+@mixin btn-rojo-hover
+  background: #FFF
+  border: 1px solid $c-rojo
+  color: $c-rojo
+  a
+    color: $c-rojo
+    opacity: 1
+@mixin btn-verde
+  font-weight: bold
+  text-transform: uppercase
+  margin: 1em 0
+  border: 1px solid #FFF
+  background: $c-verde
+  color: #FFF
+  a
+    color: #FFF
+@mixin btn-verde-hover
+  background: #FFF
+  border: 1px solid $c-verde
+  color: $c-verde
+  a
+    color: $c-verde
+    opacity: 1
+@mixin btn-azul
+  font-weight: bold
+  text-transform: uppercase
+  margin: 1em 0
+  border: 1px solid $c-azul
+  background: $c-azul
+  color: #FFF
+  a
+    color: #FFF
+@mixin btn-azul-hover
+  background: #FFF
+  border: 1px solid $c-azul
+  color: $c-azul
+  a
+    color: $c-azul
+    opacity: 1
+
+$break-small: 400px
+$break-medium: 800px
+$break-large: 1180px
+
+    
+/**** Fin Definiciones, que iran en una hoja aparte ****/

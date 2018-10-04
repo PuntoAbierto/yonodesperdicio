@@ -1,0 +1,12 @@
+<%= I18n.t("mailboxer.message_mailer.you_have_new_message") %>: <%= @subject %>
+===============================================
+
+-----------------------------------------------
+<%= I18n.t("mailboxer.message_mailer.message.subject") %>:
+<%= @message.subject %>
+
+<%= I18n.t("mailboxer.message_mailer.message.body") %>:
+<%= @message.body %>
+-----------------------------------------------
+
+<%= link_to mailboxer_message_url(id: @message.conversation.id), mailboxer_message_url(id: @message.conversation.id) %>

@@ -1,0 +1,29 @@
+<center><%= link_to (image_tag "propias/avatar_thumb.png", :alt => "PetraBrick", :id => "brick", :class => "img-responsive"), root_path, :title => "yonodesperdicio.org home" %>
+</center>
+
+<h1 style="color: #6abf4a">
+  <%= I18n.t("mailboxer.message_mailer.you_have_new_message") %>
+</h1>
+
+<p style="color:#012b5a; font-weight: bold;">
+  <%= I18n.t("mailboxer.message_mailer.message.subject") %>
+</p>
+<blockquote>
+  <p style="color:#012b5a;">
+    <%= @message.subject %>
+  </p>
+</blockquote>
+
+<p style="color:#012b5a; font-weight: bold;">
+	<%= I18n.t("mailboxer.message_mailer.message.body") %>
+</p>
+<blockquote>
+  <p style="color:#012b5a;">
+    <%= @message.body %>
+  </p>
+</blockquote>
+
+<p>
+  <%= link_to t('mailboxer.message_mailer.visit'), mailboxer_message_url(id: @message.conversation.id), {:style=>"color:#005cb8;"} %>
+</p>
+<p><%= link_to 'No te olvides de valorar al usuario con el que contactaste. ¡Usa las estrellas!', mailboxer_message_url(id: @message.conversation.id), {:style=>"color:#005cb8;"} %></p>

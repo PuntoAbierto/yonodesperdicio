@@ -1,0 +1,133 @@
+<% content_for(:meta_title, t('nlt.new_user')) %>
+
+<div class="container-fluid">
+<div class="row">
+
+<div id="registrate" class="col-md-6 col-md-offset-3">
+
+  <h1 id="title"><%= t 'nlt.new_user' %></h1>
+  <p>(<%= t 'nlt.if_youre_already_an_user' %>&nbsp;
+  <%= link_to t('nlt.access_here'), new_user_session_path, :title => "user login" %>)</p>
+  <p>(En la web sólo serán visibles tu nombre de usuario, foto y el código postal)</p>
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <fieldset>
+
+      <%= devise_error_messages! %>
+
+      <dl>
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+          <dt id="nombre-label">
+            <label for="nombre" class="required">
+              <%= 'Nombre y apellidos' %>
+            </label>
+          </dt>
+          <dd id="nombre-element">
+            <%= f.text_field :name, :autofocus => true, :required => true, :placeholder => "Nombre y apellidos" %>
+          </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+        <dt id="username-label">
+        <label for="username" class="required">
+          <%= 'Nombre de usuario' %>
+        </label>
+        </dt>
+        <dd id="username-element">
+        <%= f.text_field :username, :required => true, :placeholder => "Nombre de usuario" %>
+        </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+        <dt id="email-label">
+        <label for="email" class="required">
+          <%= 'Email de contacto' %>
+        </label>
+        </dt>
+        <dd id="email-element">
+        <%= f.email_field :email, :autofocus => true, :required => true, :placeholder => "Email" %>
+        </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+        <dt id="password1-label">
+        <label for="password1" class="required">
+          <%= 'Contraseña' %>
+        </label>
+        </dt>
+        <dd id="password1-element">
+        <%= f.password_field :password, :required => true %>
+        </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+        <dt id="password2-label">
+        <label for="password2" class="required">
+          <%= 'Repetir contraseña' %>
+        </label>
+        </dt>
+        <dd id="password2-element">
+        <%= f.password_field :password_confirmation, :required => true %>
+        </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+        <dt id="localidad-label">
+        <label for="localidad" class="required">
+          <%= 'Localidad' %>
+        </label>
+        </dt>
+        <dd id="localidad-element">
+        <%= f.text_field :city, :autofocus => true, :placeholder => "Localidad" %>
+        </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+        <dt id="provincia-label">
+        <label for="provincia" class="required">
+          <%= 'Provincia' %>
+        </label>
+        </dt>
+        <dd id="provincia-element">
+        <%= f.text_field :province, :autofocus => true, :placeholder => "Provincia" %>
+        </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+        <dt id="codigo-label">
+        <label for="codigo" class="required">
+          <%= 'Código postal' %>
+        </label>
+        </dt>
+        <dd id="codigo-element">
+        <%= f.text_field :zipcode, :autofocus => true, :required => true, :placeholder => "Código postal" %>
+        </dd>
+        </div><!--/reg-item-->
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+          <label for="captcha-input" class="required">
+            <%= t('nlt.please_introduce') %>
+          </label>
+          <%= recaptcha_tags(:display => { :theme => "white" }, ajax: true)%>
+        </div><!--/reg-item-->
+
+        <p>
+          <%= f.check_box :accept_mailing %> <%= 'Acepto recibir las noticias e información de Prosalus' %>
+        </p>
+
+        <div class="reg-item col-md-12 col-sm-12 col-xs-12">
+          <p><%= f.submit 'Confirmar' %></p>
+        </div><!--/reg-item-->
+      </dl>
+
+    </fieldset>
+  <% end %>
+
+  <p class="enrojo">Al hacer clic en “Confirmar” acepto la las condiciones de uso y política de protección
+de datos que figuran en la <%= link_to 'Información legal', legal_path %> de esta página y declaro tener más de
+18 años.</p>
+
+</div><!--/registrate-->
+</div><!--/row-->
+</div><!--/container-fluid-->
+

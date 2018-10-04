@@ -1,0 +1,17 @@
+
+  <h4>Noticias destacadas</h4>
+  <ul>
+  <% @noticias_destacadas.each do |noticia| %>
+    <p><%= link_to noticia.title, noticia_url(noticia) %></p>
+  <% end %>        
+  </ul>
+
+
+  <h4>Tweets</h4>
+    <div id="tweets">
+      <a class="twitter-timeline"  href="https://twitter.com/nodesperdicio" data-widget-id="638396445943533568" data-tweet-limit="3" data-chrome="nofooter">Tweets de @nodesperdicio.</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+
+  <h4>Links interesantes</h4>
+   <%= text_for :links %>

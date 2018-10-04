@@ -1,0 +1,22 @@
+<% content_for :meta_title, "#{t('nlt.published_ads')} - #{@user.username}" %>
+
+<div class="col-md-1 col-sm-1 col-xs-12">
+  <%= render partial: "users/tabnav", locals: {user: current_user} %> 
+</div>
+
+<div id="inside" class="col-md-11 col-sm-11 col-xs-12">
+
+<h1 class="title-listados"><%= t 'nlt.published_ads' %> por <%= @user.username %></h1>
+
+<table id="listados" class="table table-responsive">
+    <% if @ads.count > 0 %>
+      <% @ads.each do |ad| %>
+        <tr><td><%= render :partial => "ads/ad", :locals => { :ad => ad } %></td></tr>
+      <% end %>
+      <%= render partial: "partials/pagination", locals: { items: @ads } %>
+    <% else %>
+      <p><div class="info"> <%= t("nlt.no_results.on_user") %></div></p>
+    <% end %>
+</table>    
+
+</div><!--/inside-->

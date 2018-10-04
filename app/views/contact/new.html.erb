@@ -1,0 +1,51 @@
+<% content_for :meta_title, t('nlt.contact_form') %>
+
+
+<div id="contactblock" class="col-md-6 col-md-offset-3">
+    <h1 id="title"><%= 'Formulario de contacto' %></h1>
+    <%= form_for @contact do |f| %>
+      <fieldset>
+        <p><%= t('nlt.contact_legend') %></p>
+
+        <% if @contact.errors.any? %>
+          <div class="error_messages">
+            <h3><%= t('nlt.save_failed') %></h3>
+            <ul>
+              <% @contact.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <dl>
+          <% unless user_signed_in? %>
+            <dt id="email-label">
+              <%= f.label :email, :class => "required" %>
+            </dt>
+            <dd id="email-element">
+              <%= f.text_field :email, :type => :email, :required => "required" %>
+            </dd>
+          <% end %>
+          <dt id="message-label">
+            <%= f.label :message, :class => "required" %><br />
+          </dt>
+          <dd id="message-element">
+            <%= f.text_area :message, :rows => "10" %>
+          </dd>
+          <dt id="captcha-input-label">
+          <label for="captcha-input" class="required">
+            <%= t('nlt.please_introduce') %>
+          </label>
+          </dt>
+          <dd id="captcha-element">
+            <%= recaptcha_tags(:display => { :theme => "white" }, ajax: true)%>
+          </dd>
+          <dt id="submit-label">&nbsp;</dt>
+          <dd id="submit-element">
+            <div class="entrar"><%= f.submit t('nlt.send') %></div>
+          </dd>
+        </dl>    
+      </fieldset>
+    <% end %>
+  </div><!-- /col -->

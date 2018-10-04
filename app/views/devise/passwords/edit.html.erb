@@ -1,0 +1,19 @@
+<div id="loginblock" class="col-md-4 col-md-offset-4">
+
+<h1 id="title"><%= t('nlt.change_your_password', :default => 'Change your password') %></h1>
+
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div><%= f.label :password, t('nlt.new_password', :default => 'New password') %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation, t('nlt.confirm_new_password', :default => 'Confirm new password') %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div class="entrar"><%= f.submit t('nlt.change_my_password', :default => 'Change my password') %></div>
+<% end %>
+<br>
+<%= render "devise/shared/links" %>
+</div>

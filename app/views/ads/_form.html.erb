@@ -1,0 +1,128 @@
+  <div id="main" class="col-md-12">
+    <fieldset>
+      <%= form_for(@ad, :html => {:multipart => true}) do |f| %>
+        <% if @ad.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= t('nlt.save_failed') %></h2>
+            <ul>
+              <% @ad.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      <dl class="zend_form">
+
+        <% if @ad.id %>
+          <dt id="status-label">
+          <%= f.label :status,  t('nlt.ads.form.status'), :class => "required" %>
+          </dt>
+          <dd id="status-element">
+          <%= f.select(:status, options_for_select([[t('nlt.available'), 1], [t('nlt.booked'), 2], [t('nlt.delivered'), 3]], selected: @ad.status))  %>
+          </dd>
+        <% end %>
+
+
+        <dt id="title-label">
+        <%= f.label :title,  t('nlt.ads.form.title'), :class => "required" %>
+        </dt>
+        <dd id="title-element">
+        <%= f.text_field :title, required: true, maxlength: 100, size: 45 %>
+        <p class="description">
+          (Requerido) <%= 'Entre 5 y 100 caracteres' %>
+        </p>
+        </dd>
+
+        <dt id="food_category-label">
+        <%= f.label :food_category,  t('nlt.ads.form.food_category'), :class => "required" %>
+        </dt>
+        <dd id="food_category-element">
+        <%= f.select(:food_category, Ad::FOOD_CATEGORIES, :required => true, :include_blank => true, prompt: "CATEGORÍA DE ALIMENTOS" )  %>
+        </dd>        
+
+        <dt id="grams-label">
+          <%= f.label :grams,  t('Cantidad'), :class => "required" %>
+        </dt>
+        <dd id="gram-element">
+          <%= f.text_field :grams, placeholder: "en gramos" %>
+        <p class="description">
+          (Requerido) <%= 'Pon la cantidad en gramos.' %>
+        </p>
+        </dd>
+
+        <dt id="body-label">
+        <%= f.label :body,  t('nlt.ads.form.body'), :class => "required" %>
+        </dt>
+        <dd id="body-element">
+          <%= f.text_area :body, :rows => 10, :cols => 80, :required => true, :maxlength => 500, placeholder: "Por ejemplo, puedes explicar porqué compartes este alimento." %>
+        <p class="description">
+          (Requerido) <%= 'Entre 10 y 500 caracteres.' %><br>
+          <%= '(No copies y pegues texto, porque sin querer puedes traer caracteres raros. Mejor escribe aquí directamente.)' %>
+        </p>
+        </dd>        
+
+        <dt id="pick_up-label">
+          <%= f.label :pick_up_date,  t('Fecha límite de entrega') %>
+        </dt>
+        <dd id="pick-up-element">
+          <%= f.date_select :pick_up_date, :include_blank => true, :start_year => Time.now.year, :default => {:day => nil, :month => nil, :year => nil} %>
+        <p class="description">
+          <%= t 'Elige una fecha' %>
+        </p>
+        </dd>
+
+        <dt id="zipcode-label">
+          <%= f.label :zipcode,  t('Código postal') %>
+        </dt>
+        <dd id="zipcode-element">
+          <%= f.text_field :zipcode %>
+        <p class="description">
+          <%= '(Cámbialo si desde donde ofertas el alimento no coincide con tu código postal)' %>
+        </p>
+        </dd>
+
+        <% if @ad.image.exists? %>
+          <div class="ad_list_image">
+            <%= link_to image_tag(@ad.image.url(:thumb), :alt => @ad.title), @ad.image.url, :rel => 'superbox[image]', :alt => t('nlt.click_to_large') %>
+          </div>
+        <% end %>
+
+        <dt id="photo-label">
+          <%= f.label :image,  t('nlt.ads.form.select_an_image'), :class => "optional" %>
+        </dt>
+        <dd>
+          <%= f.file_field :image %>
+        </dd>
+        <p class="description">
+          (Opcional) <%= t 'nlt.ads.form.image_permitted_formats' %>
+        </p>
+
+        <dt id="comments_enabled-label">
+        <%= f.label :comments_enabled,  t('nlt.ads.form.comments_enabled'), :class => "required" %>
+        </dt>
+        <dd id="comments-element">
+          <%= f.check_box :comments_enabled %>
+        </dd>
+
+        <% unless params[:action] == "edit" %>
+          <dt id="captcha-input-label">
+          <label for="captcha-input" class="required">
+            <%= t('nlt.please_introduce') %>
+          </label>
+          </dt>
+          <dd id="captcha-element">
+            <%= recaptcha_tags(:display => { :theme => "white" }, ajax: true)%>
+          </dd>
+        <% end %>
+
+        <%= f.hidden_field :woeid_code, value: current_user.woeid %>
+
+        <dd>
+          <div class="actions"><%= f.submit t 'nlt.send' %></div>
+        </dd>
+
+        </dd>
+        </dl>
+      <% end %>
+    </fieldset>
+  </div>

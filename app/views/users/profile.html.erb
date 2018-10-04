@@ -1,0 +1,178 @@
+<%= content_for(:meta_title, "#{t('nlt.user_profile')} - #{@user.username}") %>
+
+<div id="profile" class="row">
+
+  <% if user_signed_in? and @user.id == current_user.id %>
+    <h1 id="title"><%= 'Hola, ' %> <%= @user.name %></h1>
+  <% end %>
+
+  <div id="profile-block" class="col-md-3 col-sm-3 col-xs-12">
+    <div class="profile-header">
+      <span class="col-md-8 col-sm-8 col-xs-8">Perfil</span>
+      <% if user_signed_in? and @user.id == current_user.id %>
+        <span class="col-md-4 col-sm-4 col-xs-4"><%= link_to 'Editar', user_edit_path(@user, :class => "btn btn-azul") %></span>
+      <% end %>
+    </div><!--/profile-header-->
+
+    <div class="profile-body">
+      <div class="izda col-md-4 col-sm-4 col-xs-4">
+        <%= image_tag @user.image.url(:thumb), :alt => "", :class => "avatar, img-responsive" %>
+      </div><!--/izda-->
+
+      <div class="dcha col-md-8 col-sm-8 col-xs-8">
+        <p class="username"><%= @user.username %></p>
+        <% if user_signed_in? and @user.id != current_user.id %>
+        <p>Valora a este usuario: 
+          <%= rating_for @user, "rating", disable_after_rate: true, :cancel => true, cancel_place: 'right', cancel_hint: 'Cancela esta valoración!' %></p>
+        <% else %>
+          <%= rating_for @user, "rating" %>
+          <p class="small">Tu valoración sólo se guardará si has iniciado sesión</p>
+        <% end %>
+
+      </div><!-- /dcha -->
+
+      <div class="abajo col-md-12 col-sm-12 col-xs-12">
+       <iframe width="100%" height="100" frameborder="0" style="border:0"
+       src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCZtag48hMPyRv9K0xppoqTstZmJ9DHS_Q
+       &q=<%= @user.zipcode %>,<%= @user.city %>&zoom=10" allowfullscreen>
+       </iframe>
+        <p><%= t('nlt.member_since') %>: <%= l @user.created_at, format: "%d-%m-%Y" %></p>
+        <p>Código Postal: <%= @user.zipcode %></p>
+        <!--<p>[Mapa]</p>-->
+        <p>Comida entregada: <span id="comidaentregada"><%= grams_to_kg(@user.total_quantity) %> kg</span></p>
+      </div><!-- /abajo -->
+    </div><!-- /profile-body -->
+
+  <% if user_signed_in? and @user.id == current_user.id %>
+    <div class="btn btn-rojo col-md-12"><%= link_to 'Nueva idea', new_my_idea_path %></div>
+    <div class="btn btn-rojo col-md-12">
+      <%= link_to "Comparte alimentos", new_ad_path %>
+    </div>
+  <% end %>
+
+    <div id="profile-menu">
+      <% if user_signed_in? and @user.id == current_user.id %>
+        <div class="btn btn-azul col-md-12">
+          <% unread_messages_count = current_user.unread_messages_count %>
+          <%= link_to messages_list_path, title: "#{unread_messages_count}" do %>
+            Tienes <%= unread_messages_count %> mensaje(s) sin leer
+          <% end %>
+        </div>
+        <% end %>
+    </div><!-- /profile-menu -->
+  </div><!-- /profile-block -->
+
+<div class="col-md-9 col-sm-9 col-xs-12">
+
+<p class="title-listados">Alimentos compartidos de <%= @user.username %></p>
+<table id="table-alimentos" class="listados table table-responsive">
+  <% if @user.ads.count > 0 %>
+    <% @user.ads.each do |anuncio| %>
+
+      <tr>
+        <td><%= link_to image_tag(anuncio.image.url(:thumb), :alt => " ", :class => "img-responsive"), adslug_path(id: anuncio.id, slug: anuncio.slug) %>
+          <p class="ad_status <%= anuncio.status_class %>"><%= anuncio.status_string %></p>
+        </td>
+
+        <td>
+          <p class="grande enrojo"><%= link_to anuncio.title, adslug_path(id: anuncio.id, slug: anuncio.slug) %></p>
+          <p class="enrojo"><%= grams_to_kg(anuncio.grams) %> kg</p>
+          <p><b>Fecha límite de entrega:</b> <%= formated_date(anuncio.pick_up_date) %></p>
+          <p><%= truncate_html(markdown(anuncio.body).html_safe, length: 150, omission: ' ... ') %></p>
+        </td>
+        <td class="botones">
+          <div>
+            <% if user_signed_in? and @user.id == current_user.id %>
+              <p class="btn btn-azul col-md-12"><%= link_to 'Ver', adslug_path(id: anuncio.id, slug: anuncio.slug) %></p>
+              <% if can? :update, anuncio %>
+                <p class="btn btn-verde col-md-12"><%= link_to ads_edit_path(anuncio.id) do %>
+                  Editar
+              <% end %></p>
+
+              <% if anuncio.status != 3 && can?(:destroy, anuncio) %>
+                <p class="btn btn-rojo col-md-12"><%= link_to 'Eliminar', ad_path(id: anuncio.id), method: :delete, data: { confirm: '¿Seguro que quieres eliminar este alimento?' } %></p>
+              <% end %>
+
+            <% end %>
+            <% end %>
+          </div>
+        </td>
+        <% end %>
+      <% else %>
+        <p> <%= t("nlt.no_results.on_user") %> </p>
+        </tr>
+      <% end %>
+  </table>
+
+  <p class="title-listados">Ideas de <%= @user.username %></p>
+  <table id="table-ideas" class="listados table table-responsive">
+    <% @user.ideas.each do |idea| %>
+    <tr>
+      <td><%= link_to image_tag(idea.image.url(:thumb), :alt => " ", :class => "img-responsive"), idea_url(idea) %></td>
+      <td>
+        <p class="grande"><%= link_to idea.title, idea_url(idea) %></p>
+        <p><%= truncate_html(markdown(idea.introduction).html_safe, length: 200, omission: ' ... ') %></p>
+      </td>
+      <td class="botones">
+        <% if user_signed_in? and @user.id == current_user.id %>
+          <p class="btn btn-azul col-md-12"><%= link_to 'Ver', idea_url(idea) %></p>
+          <!--<p class="btn btn-azul"><%#= link_to 'Previsualizar', my_idea_path(idea) %></p>-->
+          <p class="btn btn-verde col-md-12"><%= link_to 'Editar', edit_my_idea_path(idea) %></p>
+          <p class="btn btn-rojo col-md-12"><%= link_to 'Eliminar', my_idea_path(idea), method: :delete, data: { confirm: 'Seguro que quieres eliminar?' } %></p>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+</table>
+
+<hr>
+
+<% unless current_user == @user %>
+  <%= link_to message_new_path @user.id, :class => "world_link" do %>
+    <%= t('nlt.send_a_message_to') %> <%= @user.username %>
+    <%#= image_tag "email_send.png", :alt => "send a mesage" %>
+  <% end %>
+<% end %>
+
+      <% if can? :lock, @user %>
+        <li>
+          <% if @user.locked? %>
+            <%= link_to unlock_user_path(@user.id), data: {confirm: "¿Estas seguro que quieres desbloquear a este usuario? Podrá volver iniciar sesión."} do %>
+              <%= t('nlt.admin.unlock_user') %>
+              <%= image_tag "neu/24x24/actions/add.png" %>
+            <% end %>
+          <% else %>
+            <%= link_to lock_user_path(@user.id), data: {confirm: "¿Estas seguro que quieres bloquear a este usuario? No podrá iniciar sesión."} do %>
+              <%= t('nlt.admin.lock_user') %>
+              <%= image_tag "neu/24x24/actions/remove.png" %>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% unless user_signed_in? and @user.id == current_user.id %>
+
+        <% if can? :become, @user %>
+          <li>
+            <%= link_to t('nlt.admin.become_user'), become_user_path(@user.id) %>
+          </li>
+        <% end %>
+
+      <% end %>
+
+      <% unless @user.friends.count == 0 %>
+        <div>
+        <h4><%= t('nlt.friends') %>:</h4>
+        <ul>
+          <% @user.friends.each do |friend| %>
+            <li>
+              <%= link_to friend.username, profile_path(friend.username) %>
+            </li>
+          <% end %>
+        </ul>
+        <br>
+        </div>
+      <% end %>
+
+  </div><!-- /ofertas-->
+</div><!-- /profile -->

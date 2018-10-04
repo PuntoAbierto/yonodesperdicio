@@ -1,0 +1,39 @@
+<% content_for(:meta_title, t('nlt.home_title')) %>
+
+<div id="main">
+  <div class="section_ads">
+    <h2><%= t('nlt.last_published_gifts') %></h2>
+    <% @ads.each_with_index do |ad,i| %>
+      <%= render :partial => "ad", :locals => { :ad => ad, :i => i, :show_ads => true } %>
+    <% end %>
+    <br>
+    <br>
+    <b> <%= link_to t('nlt.view_more_ads'), ads_listall_path(type: :give, page: 2) %> </b>
+  </div>
+</div>
+
+<% cache("section_locations_#{I18n.locale}") do %>
+  <%= render :partial => "partials/section_locations" %>
+<% end %>
+
+<% cache("section_users_#{I18n.locale}") do %>
+  <%= render :partial => "partials/section_users" %>
+<% end %>
+
+<% content_for :action do %>
+  <div>
+    <div class="ad_change_location_home">
+      <%= link_to t('nlt.change_city'), location_ask_path %>
+    </div>
+    <div class="ad_create_tab">
+      <% if @location_suggest.nil? %>
+        <%= link_to t('nlt.view_ads_on_your_city'), location_ask_path %>
+      <% else %>
+        <%= link_to t('nlt.view_ads_on', location_suggest: @location_suggest), location_change_path(location: @location_suggest) %>
+        <%= link_to location_change_path(location: location_suggest) do %>
+          <%= t('nlt.view_ads_on', location_suggest: @location_suggest) %></a>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

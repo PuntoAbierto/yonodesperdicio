@@ -1,0 +1,24 @@
+<div class="ad_comments">
+
+  <% if comments.count > 0 %>
+    <p class="mayusc"><%= comments.count %> comentario(s)</p>
+  <% end %>
+
+  <% comments.each do |comment| %>
+    <% if comment.user %>
+      <div class="ad_comment">
+        <div class="izda col-md-3 col-sm-3 col-xs-12">
+          <%= image_tag comment.user.image.url(:thumb), :alt => "", :class => "img-responsive, avatar" %>
+        </div><!--/avatar--> 
+        <div class="dcha col-md-9 col-sm-9 col-xs-12">
+          <span class="ad_date">
+          <%= t('nlt.published_at_by_html', time: distance_of_time_in_words_to_now(comment.created_at), user: link_to(comment.user.username, profile_path(comment.user.username))) %>
+          </span>
+         <br>
+         <span><%= comment.body %></span>
+       </div><!--/comment-text-->
+      </div>
+
+    <% end %>
+  <% end %>
+</div>

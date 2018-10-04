@@ -1,0 +1,36 @@
+
+<% content_for(:meta_title) {@organization.name} %>
+
+<div class="row fondoblanco">
+
+  <div class="col-md-4 col-sm-4 col-xs-6">
+    <h3 id="title"><%= @organization.name %></h3>
+    <p><%= markdown(@organization.address).html_safe %></p>
+    <p><%= markdown(@organization.zipcode).html_safe %></p>
+    <p><%= markdown(@organization.phone).html_safe %></p>
+    <p><%= markdown(@organization.email).html_safe %></p>
+    <p><%= markdown(@organization.website).html_safe %></p>
+    <% if user_signed_in? %>
+      <p>Valora esta organización:
+        <%= rating_for @organization, "rating", disable_after_rate: true, :cancel => true, cancel_place: 'right', cancel_hint: 'Cancela esta valoración!' %></p>
+    <% else %>
+      <p><%= rating_for @organization, "rating", disable_after_rate: true %></p>
+      <p class="small">Tu valoración sólo se guardará si has iniciado sesión</p>
+    <% end %>
+
+  </div><!-- col-4 -->
+
+  <div class="col-md-4 col-sm-4 col-xs-6">
+    <p><%= truncate_html(markdown(@organization.description).html_safe, length: 800, omission: ' +...') %></p>
+  </div><!-- col-4 -->
+
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <iframe width="100%" height="200" frameborder="0" style="border:0"
+       src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCZtag48hMPyRv9K0xppoqTstZmJ9DHS_Q
+       &q=<%= @organization.address %>,<%= @organization.zipcode %>&zoom=16" allowfullscreen>
+       </iframe>
+  </div><!-- col-4 -->
+
+</div><!-- /fondoblanco -->
+
+<div class="col-md-12 col-sm-12 col-xs-12"><i class="fa fa-arrow-left"></i><%= link_to ' VOLVER' , organizations_path %></div>

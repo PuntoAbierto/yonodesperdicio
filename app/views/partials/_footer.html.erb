@@ -1,0 +1,43 @@
+<div id="footer">
+  <div class="row">
+    <div id="info" class="col-md-9 col-sm-9 col-xs-12">
+      <h2>Quiénes somos</h2>
+      <p>Prosalus es una organización no gubernamental de cooperación al desarrollo (ONGD) cuya misión es promover el respeto, protección y garantía de los derechos humanos a la alimentación, a la salud y al agua y saneamiento. Una de las líneas de trabajo de Prosalus está relacionada con el reconocimiento del derecho a la alimentación y un aspecto importante es la disminución del desperdicio de alimentos. Siguiendo la filosofía colaborativa, ponemos en marcha esta red que facilita el intercambio y la reducción del desperdicio. Esta iniciativa cuenta con la financiación de Territorios Solidarios de BBVA, el Ayuntamiento de Madrid  y con la colaboración del Centro de Innovación en Tecnología para el Desarrollo Humano (itdUPM).</p>
+      <p>E-mail de contacto: <a href="mailto:cuentame@yonodesperdicio.org">cuentame@yonodesperdicio.org</a></p>
+    </div><!--/info-->
+
+    <div id="siguenos" class="col-md-3 col-sm-3 col-xs-12">
+      <h2 class="enlinea col-md-4 col-sm-5 col-xs-4">Síguenos</h2>
+      <p id="rrssf" class="col-md-8 col-sm-7 col-xs-8"> 
+        <%= link_to(image_tag("rrss/twitter-48.png", :alt => "Twitter", :id => "twitter", :class=> "img-responsive"), "https://twitter.com/nodesperdicio", :target => "_blank") %>
+        <%= link_to(image_tag("rrss/facebook-48.png", :alt => "Facebook", :id => "facebook", :class=> "img-responsive"), "https://www.facebook.com/yonodesperdicio", :target => "_blank") %>
+        <%= link_to(image_tag("rrss/youtube-48.png", :alt => "YouTube", :id => "youtube", :class=> "img-responsive"), "https://www.youtube.com/user/Prosalus", :target => "_blank") %>
+        <%= link_to(image_tag("rrss/flickr-48.png", :alt => "Flickr", :id => "flickr", :class=> "img-responsive"), "https://www.flickr.com/photos/prosalus/sets/72157658321641150", :target => "_blank") %>
+      </p>
+      <p id="logos" class="col-md-12 col-sm-12 col-xs-12"><a href="http://prosalus.es/" target="_blank">
+        <%= image_tag("propias/logo-prosalus.png", :id => "logoprosalus", :alt => "Logo Prosalus") %>
+      </a>
+      <a href="http://www.un.org/es/zerohunger/#&panel1-1" target="_blank">
+        <%= image_tag("propias/logo-reto-hambre-0.png", :id => "logohambre0", :alt => "Logo Reto Hambre Cero") %>
+      </a></p>
+    </div><!--/col-md-4-->
+  </div><!--/footerone-->
+</div><!--/footer-->
+
+<div id="footertwo" class="row">
+  <div class="links-left col-md-9 col-sm-7 col-xs-12">
+    <ul>
+      <li class="col-md-3 col-sm-3 col-xs-3"><%= link_to t('nlt.contact'), contact_path %></li>
+      <li class="col-md-3 col-sm-3 col-xs-3"><%= link_to ('Información legal'), legal_path %></li>
+      <li class="col-md-3 col-sm-3 col-xs-3"><%= link_to ('Mapa del sitio'), sitemap_path %></li>
+      <li class="last col-md-3 col-sm-3 col-xs-3"><%= link_to t('nlt.faqs'), faqs_path %></li>
+    </ul>
+  </div><!--/links-left-->
+
+  <div class="links-right col-md-3 col-sm-5 col-xs-12">
+    <ul>
+      <li class="col-md-6 col-sm-6 col-xs-6">DISEÑO:<br><%= link_to "Estudio blg", "http://estudioblg.com/" , { :target => "_blank" } %></li>
+      <li class="last col-md-6 col-sm-6 col-xs-6">DESARROLLO:<br><%= link_to "Punto Abierto", "http://puntoabierto.net/" , { :target => "_blank" } %></li>
+    </ul>
+  </div><!--/links-right-->
+</div><!--/footertwo-->

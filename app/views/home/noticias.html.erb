@@ -1,0 +1,30 @@
+<% content_for(:meta_title) {"noticias"} %>
+
+<div class="col-md-10 col-sm-10 col-xs-12">
+
+  <% if params[:tag] %>
+    <h1 id="title">Noticias de <%= params[:tag] %></h1>
+  <% end %>
+
+    <% @noticias.each do |noticia| %>
+    <div id="listado" class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <%= link_to image_tag(noticia.image.url(:medium), :alt => " ", :class => "img-responsive"), noticia_url(noticia) %>
+      </div>
+      <div class="col-md-8 col-sm-6 col-xs-12">
+          <h3 class="veinticinco"><%= link_to noticia.title, noticia_url(noticia) %></h3>
+          <div><%= noticia.published_at.strftime("%d/%m/%Y") %></div>
+          <div class="cuerpo">
+            <%= link_to truncate_html(markdown(noticia.body).html_safe, length: 340, omission: ' ... '), noticia_url(noticia) %>
+          </div>
+      </div>
+    </div><!-- /listado -->
+    <% end %>
+
+<%= paginate(@noticias) %>
+
+</div><!-- /col-md-10 -->
+
+<div id="sidebar-right" class="col-md-2 col-sm-2">
+    <%= render :partial => "partials/sidebar_right", :locals => { :url => "https://yonodesperdicio.org" } %>
+</div><!-- /sidebar-right -->

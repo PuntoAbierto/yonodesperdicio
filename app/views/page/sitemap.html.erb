@@ -1,0 +1,33 @@
+<% content_for (:meta_title) %>
+
+<div id="sitemap" class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+  <h1 class="title"><%= 'Mapa del sitio' %></h1>
+  <ul>
+    <li><%= link_to ('Inicio'), root_path %></li>
+    <li><%= link_to ('Noticias sin desperdicio'), noticias_path %></li>
+    <li>Ideas frescas
+  	  <ul>
+        <li><%= link_to "Rectas", ideas_url(category: 'recetas'), :class => submenu_class('recetas') %></li>
+        <li><%= link_to "Trucos", ideas_url(category: 'trucos'), :class => submenu_class('trucos') %></li>
+      </ul>
+    </li>  
+    <li>Alimentos para compartir
+  	  <ul>
+        <li><%= link_to 'Con organizaciones' , organizations_url, :class => submenu_class('organizaciones') %></li>
+        <li><%= link_to 'Con particulares' , particulares_url, :class => submenu_class('particulares') %></li>
+      </ul>
+    </li>
+    <li><%= link_to ('Iniciativas sociales'), iniciativas_sociales_path %></li>
+
+    <li><%= link_to 'Cómo funciona' , funciona_path %></li>
+    <li><%= link_to t('Contacto'), contact_path %></li>
+    <li><%= link_to ('Información legal'), legal_path %></li>
+    <li><%= link_to t('Preguntas frecuentes'), faqs_path %></li>
+  </ul>
+  </div><!-- /cols -->
+
+  <div class="google_ads">
+  </div>
+
+</div><!-- /sitemap -->

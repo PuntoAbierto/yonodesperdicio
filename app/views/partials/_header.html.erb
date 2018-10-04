@@ -1,0 +1,128 @@
+<div id="header">
+  <div id="menu-cabecera" class="row col-md-12">
+    <ul>
+      <li id="rrss" class="col-md-3 col-sm-3 col-xs-3"> 
+        <%= link_to(image_tag("rrss/twitter-48.png", :alt => "Twitter", :id => "twitter", :class=> "img-responsive"), "https://twitter.com/nodesperdicio", :target => "_blank") %>
+        <%= link_to(image_tag("rrss/facebook-48.png", :alt => "Facebook", :id => "facebook", :class=> "img-responsive"), "https://www.facebook.com/yonodesperdicio", :target => "_blank") %>
+        <%= link_to(image_tag("rrss/youtube-48.png", :alt => "YouTube", :id => "youtube", :class=> "img-responsive"), "https://www.youtube.com/channel/UCzc9vB633AGfSO3mMy6Jpow", :target => "_blank") %>
+        <%= link_to(image_tag("rrss/instagram-48.png", :alt => "Instagram", :id => "instagram", :class=> "img-responsive"), "https://www.instagram.com/yo_no_desperdicio/", :target => "_blank") %>
+        <%#= link_to(image_tag("rrss/flickr-48.png", :alt => "Flickr", :id => "flickr", :class=> "img-responsive"), "https://www.flickr.com/photos/prosalus/sets/72157658321641150", :target => "_blank") #%>
+
+     </li>
+      <li id="comofunciona" class="col-md-2 col-sm-2 col-xs-4"><%= link_to 'Cómo funciona' , funciona_path %></li>
+      <li id="login" class="col-md-2 col-sm-2 col-xs-4"><%= link_to t('nlt.login'), new_user_session_path, "data-no-turbolink" => true %></li>
+      <li id="contacto" class="col-md-2 col-sm-2 col-xs-4"><%= link_to t('nlt.contact'), contact_path %></li>
+      <li class="col-md-3 col-sm-3 col-xs-3"><%= link_to t('nlt.faqs'), faqs_path %></li>
+    </ul>
+  </div><!--/menu-cabecera-->
+
+  <div id="useractions" class="col-md-12 col-sm-12 col-xs-12">   
+    <%= render :partial => "partials/user_actions" %>
+  </div>
+
+  <div class="row col-md-12 col-sm-12 col-xs-12">
+  <div class="col-md-2 col-sm-2 hidden-xs">
+    <%= image_tag "propias/Home-comida-izda.png", :alt => "imagen de comida", :id => "comida-izda", :class => "img-responsive" %>
+  </div>
+
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="site-name">
+      <%= link_to root_path, :title => "yonodesperdicio.org home", "data-no-turbolink" => true do %>
+      <%= image_tag "propias/cabecera-yonodesperdicio.png", :title => "Yonodesperdicio", :alt => "Yonodesperdicio", :id => "img-cabecera", :class => "img-responsive" %>
+        <!--<h1>yonodesperdicio</h1>-->
+        <%=h yield(:title) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-2 col-sm-2 hidden-xs">
+    <%= image_tag "propias/Home-comida-dcha.png", :alt => "imagen de comida", :id => "comida-dcha", :class => "img-responsive" %>
+  </div>
+  </div><!--/container-->
+
+
+<div class="row homearriba col-md-12 col-xs-12">
+  <div class="col-md-4 col-sm-4 col-xs-4">
+    <%= link_to (image_tag "propias/Home-Brick.png", :alt => "Imagen brick para 'Comparte'", :id => "brick", :class => "img-responsive", :title => "Ver alimentos compartidos"), particulares_url %>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-4">
+    <%= link_to (image_tag "propias/Home-Recetas.png", :alt => "Imagen libro de recetas para 'Recetas y más...'", :id => "librorecetas", :class => "img-responsive", :title => "Ver trucos y recetas"), ideas_url(category: 'recetas') %>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-4">
+    <%= link_to (image_tag "propias/Home-Mapa.png", :alt => "Imagen gente para 'Organizaciones'", :id => "organizaciones", :class => "img-responsive", :title => "Ver organizaciones"), organizations_url %>
+  </div>
+</div><!--/homearriba-->
+
+
+  <div id="botones" class="row col-md-12 col-sm-12 col-xs-12">
+    <!--<div class="btn-ppales col-md-4 col-sm-4 col-xs-12">
+      <div id="ios" class="btn btn-azul"><%#= link_to (image_tag "propias/googleplay.png", :alt => "Google Play", :class => "img-responsive"), "https://play.google.com/store/apps/details?id=com.imaginabit.yonodesperdicion", :target => '_blank' #%>
+        <%#= link_to 'Descarga la app (iOS)', 'https://itunes.apple.com/us/app/yo-no-desperdicio/id1349176893?mt=8', :target => '_blank' #%>
+      </div>
+    </div>-->
+
+    <div class="btn-ppales col-md-2 col-sm-2 col-xs-6">
+      <div id="googleplay" class="btn btn-azul"><%#= link_to (image_tag "propias/btn-google-play-store.png", :alt => "Google Play", :class => "img-responsive"), "https://play.google.com/store/apps/details?id=com.imaginabit.yonodesperdicion", :target => '_blank' #%>
+        <i class="fa fa-android" aria-hidden="true"></i>
+        <%= link_to 'Google Play', 'https://play.google.com/store/apps/details?id=com.imaginabit.yonodesperdicion', :target => '_blank' %>
+      </div>
+    </div>
+
+    <div class="btn-ppales col-md-2 col-sm-2 col-xs-6">
+      <div id="ios" class="btn btn-azul col-md-6"><%#= link_to (image_tag "propias/btn-ios_app_store.png", :alt => "iOS Store", :class => "img-responsive"), "https://itunes.apple.com/us/app/yo-no-desperdicio/id1349176893?mt=8", :target => '_blank' #%>
+        <i class="fa fa-apple" aria-hidden="true"></i>
+        <%= link_to 'Apple Store', 'https://itunes.apple.com/us/app/yo-no-desperdicio/id1349176893?mt=8', :target => '_blank' %>
+      </div>
+    </div>
+    <div class="btn-ppales col-md-4 col-sm-4 col-xs-12">
+      <div class="btn btn-azul">
+        <%= link_to t('nlt.new_user'), new_user_registration_path, "data-no-turbolink" => true %>
+      </div>
+    </div>
+    <div class="btn-ppales col-md-4 col-sm-4 col-xs-12">
+      <div class="btn btn-azul">
+        <%= link_to 'Si te gusta ¡apóyanos!', 'https://prosalus.es/donacionesynd/formulario.php', :target => '_blank' %>
+      </div>
+    </div>
+  </div>  
+
+  <nav id="main-menu" class="row col-md-12 col-xs-12">
+    <ul>
+      <li><%= link_to root_path, :title => "Inicio", :class => menu_class('inicio'), "data-no-turbolink" => true do %>Inicio
+      <% end %></li>
+      <li><%= link_to 'noticias sin desperdicio' , noticias_path, :class => menu_class('noticias') %></li>
+      <li>
+        <div class="btn-group">
+          <button type="button" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= link_to 'ideas frescas' , ideas_path, :class => menu_class('ideas') %>&nbsp;<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Recetas", ideas_url(category: 'recetas'), :class => submenu_class('recetas') %></li>
+            <li><%= link_to "Trucos", ideas_url(category: 'trucos'), :class => submenu_class('trucos') %></li>
+          </ul>
+        </div><!-- /btn-group -->
+      </li>
+
+      <li>
+        <div class="btn-group">
+          <button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= link_to 'alimentos para compartir' , '#', :class => menu_class('compartir') %>&nbsp;<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Con organizaciones' , organizations_url, :class => submenu_class('organizaciones') %></li>
+            <li><%= link_to 'Con particulares' , particulares_url, :class => submenu_class('particulares') %></li>
+          </ul>
+        </div><!-- /btn-group -->
+      </li>  
+
+      <li><%= link_to 'iniciativas sociales' , iniciativas_sociales_path, :class => menu_class('iniciativas') %></li>
+    </ul>
+  </nav>
+
+  <% if content_for?(:action) %>
+    <%= yield(:action) %>
+  <% end %>
+
+</div><!--/header-->

@@ -1,0 +1,23 @@
+<div class="message-excerpt">
+  <div class="message-from-left">
+    <%= link_to profile_path(current_user) do  %>
+      <%= image_tag current_user.image.url(:thumb), :alt => "", :class => "img-responsive, avatar" %>
+      <%= current_user.username  %>
+    <% end %>
+  </div>
+  <div class="message-container-right">
+    <div class="triangle-me"></div>
+    <div class="bubble-reply bg-bubble-me">
+      <div id="reply">
+        <%= form_for message do |f| %>
+          <%= f.hidden_field :conversation_id %>
+          <%= f.text_area :body, size: '80x3', maxlength: 1500 %>
+          <p class="description">
+            <%= t 'mailboxer.new.body_max' %>
+          </p>
+          <div class="actions"><%= f.submit t('mailboxer.new.button') %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

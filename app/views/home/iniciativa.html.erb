@@ -1,0 +1,53 @@
+<% content_for(:meta_title) {@iniciativa.title} %>
+<% content_for :meta_description do %>
+  <meta name="description" content='<%= @iniciativa.body %>' />
+  <meta property="og:title" content="<%= @iniciativa.body %>" />
+  <meta property="og:image" content='<%= @iniciativa.image.url %>' />
+  <meta property="og:title" content='<%= @iniciativa.title %>' />
+  <meta itemprop="description" content="<%= strip_tags @iniciativa.body %>" />
+  <meta itemprop="image" content='<%= @iniciativa.image.url %>' />
+<% end %>
+
+<div class="row">
+  <div id="imagen" class="col-md-5">
+
+    <%= image_tag @iniciativa.image.url(:large), :alt => "", :class => "img-responsive" %>
+    <p><%= @iniciativa.video.html_safe if @iniciativa.video %></p>
+    <p><% @iniciativa.tag_list.each do |tag| %>
+        <%= link_to tag, iniciativas_sociales_url(tag: tag) %>,
+      <% end %>
+    </p>
+    <p>
+
+    <%= render :partial => "partials/social_buttons",
+               :locals => {
+                  :url => iniciativa_url(@iniciativa),
+                  :meta_title => @iniciativa.title } %>
+
+    </p>
+  </div><!-- /imagen -->
+
+  <div id="cuerpo" class="col-md-7">
+
+    <h1 id="title"><%= @iniciativa.title %></h1>
+    <p class="fecha"><%= @iniciativa.published_at.strftime("%d/%m/%Y") %></p>
+    <p><%= markdown(@iniciativa.body).html_safe %></p>
+    <p><i class="fa fa-arrow-left"></i><%= link_to ' VOLVER' , iniciativas_sociales_path %></p>
+
+    <div id="comentarios">
+      <p><b>COMENTAR</b>
+      <% if !user_signed_in? %>
+       <b>(Para dejar un comentario es necesario iniciar sesión)</b>
+        <span class="login">
+          <%= link_to t('nlt.login'), new_user_session_path, "data-no-turbolink" => true %>
+        </span>
+      <% end %>
+      <div class="user_login_box"><%= render :partial => "partials/user_actions" %></div></p>
+
+
+      <%= render :partial => "comments/form", :locals => {:path => iniciativa_comments_path(@iniciativa), :comment => Comment.new} %>
+      <%= render :partial => "comments/list", :locals => {:comments => @iniciativa.comments} %>
+    </div><!--/comentarios-->
+
+  </div><!-- /cuerpo -->
+</div><!-- /row -->

@@ -1,0 +1,40 @@
+<% content_for(:meta_title, t('nlt.sign_in')) %>
+
+
+<div id="loginblock" class="col-md-4 col-md-offset-4">
+  <h1 id="title">Inicia sesión</h1>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <fieldset>
+      <legend>
+        <% t('nlt.please_insert_email_and_password') %>
+      </legend>
+
+      <dt id="email-label">
+      <label for="email" class="required">
+        <%= t('nlt.your_email') %>
+      </label>
+      </dt>
+
+      <dd id="email-element">
+        <%= f.email_field :email, :autofocus => true %>
+      </dd>
+
+      <dt id="password-label">
+      <label for="password" class="required">
+        <%= t('nlt.password') %>
+      </label>
+      </dt>
+
+      <dd id="password-element">
+      <%= f.password_field :password %>
+      </dd>
+
+      <div class="entrar"><%= f.submit 'Entrar' %></div>
+ 
+      <p><%= render "devise/shared/links" %></p>
+
+      <p><%= 'Si aún no te has registrado, hazlo ahora' %></p>
+      <p><%= link_to 'Regístrate', new_user_registration_path, "data-no-turbolink" => true, :title => "user register", :class => "boton-registro btn btn-default" %></p>
+    </fieldset>
+  <% end %>
+</div>
