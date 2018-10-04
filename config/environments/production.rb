@@ -79,10 +79,10 @@ Yonodesperdicio::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # for devise
-  config.action_mailer.default_url_options = { :host => 'beta.yonodesperdicio.org' }
+  config.action_mailer.default_url_options = { :host => 'yonodesperdicio.org' }
 
   # for images on mailer
-  config.action_controller.asset_host = 'https://beta.yonodesperdicio.org'
+  config.action_controller.asset_host = 'https://yonodesperdicio.org'
   config.action_mailer.asset_host = config.action_controller.asset_host
 
 end

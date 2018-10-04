@@ -45,3 +45,5 @@ log/*.sphinx.pid
 
 #localeapp
 log/localeapp.yml
+public/.ftpquota
+public/system.old

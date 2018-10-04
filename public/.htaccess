@@ -1,4 +1,11 @@
 
-RewriteEngine on
-
 RewriteOptions inherit
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule (.*) https://www.yonodesperdicio.org/$1 [R,L] 
+
+RewriteCond %{HTTP_HOST} ^www.yonodesperdicio.org [NC]
+RewriteRule ^(.*)$ https://yonodesperdicio.org/$1 [L,R=301]
