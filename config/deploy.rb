@@ -1,5 +1,5 @@
 set :application, 'yonodesperdicio.org'
-set :repo_url, 'git@bitbucket.org:yonodesperdicio/yonodesperdicio.git'
+set :repo_url, 'git@github.com:mijailr/YND.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
@@ -9,6 +9,10 @@ set :format, :pretty
 set :log_level, :debug
 set :pty, true
 
+set :bundle_flags, '--quiet'
+set :bundle_bins, %w(rake rails)
+set :bundle_path, nil
+
 #set :deploy_via, :copy
 set :deploy_via, :remote_cache
 
@@ -16,7 +20,7 @@ set :ssh_options, { :forward_agent => true }
 
 set :linked_files, %w{config/database.yml config/secrets.yml config/newrelic.yml vendor/geolite/GeoLiteCity.dat}
 set :linked_dirs, %w{db/sphinx log tmp/pids tmp/cache tmp/sockets tmp/cachedir vendor/bundle public/system public/legacy public/.well-known}
-
+set :tmp_dir, "/home/yonodesp/tmp"
 set :keep_releases, 5
 
 # Logical flow for deploying an app
@@ -37,6 +41,12 @@ namespace :deploy do
     end
   end
 
+  desc 'restart app'
+  task :restart do
+    on roles(:all) do
+      execute "touch #{ current_path }/tmp/restart.txt"
+    end
+  end
 
   before :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
