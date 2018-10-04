@@ -29,7 +29,7 @@ class AdsController < ApplicationController
     @ad.increment_readed_count!
     set_menu('compartir')
     set_submenu('particulares')
-    @other_ads = @ad.user.ads - [@ad]
+    @other_ads = @ad.user.ads.available - [@ad]
     @ads_count = @other_ads.count
   end
 
