@@ -71,7 +71,7 @@
 </div>
 
 <div id="otros-ads" class="col-md-12 col-sm-12 col-xs-12">
-  <% if @ads_count > 0 %>
+  <% if @other_ads.count > 0 %>
     <h3><%= @ad.user.username %> también comparte:</h3>
     <% @other_ads.each do |anuncio| %>
       <div class="col-md-3 col-sm-3 col-xs-6">
