@@ -24,8 +24,8 @@ set :tmp_dir, "/home/yonodesp/tmp"
 set :keep_releases, 5
 
 # Logical flow for deploying an app
-after  'deploy:finished',            'thinking_sphinx:index'
-after  'deploy:finished',            'thinking_sphinx:restart'
+# after  'deploy:finished',            'thinking_sphinx:index'
+# after  'deploy:finished',            'thinking_sphinx:restart'
 after  'deploy:finished',            'deploy:restart'
 
 namespace :deploy do
