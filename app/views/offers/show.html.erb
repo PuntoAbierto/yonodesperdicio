@@ -1,0 +1,30 @@
+<%= content_for(:meta_title, "Oferta #{@offer.title}") %>
+
+<div id="a_offer" class="row fondoblanco">
+  <div class="col-md-4 col-sm-6 col-xs-12">
+    <%= image_tag @offer.image.url(:large), class: "img-responsive", alt: "Oferta #{@offer.title}" %>
+  </div>
+  <div class="col-md-8 col-sm-6 col-xs-12">
+    <h3 class="enrojo"><%= @offer.title %></h3>
+    <p>Establecimiento: <%= @offer.store %></p>
+    <p>Dirección: <%= @offer.address %></p>
+    <p>Fecha límite: <%= l(@offer.until, format: :small) %></p>
+    <p><%= @offer.description %></p>
+  </div>
+  <div class="meta_info col-md-12">
+    <span><%= t('nlt.share_this_ad') %></span>
+    <span id="redes">
+      <%= render partial: "partials/social_buttons",
+        locals: {
+        url: offers_url(@offer),
+        meta_title: "Oferta de #{@offer.title}",
+        meta_description: @offer.description,
+        text: @offer.title
+      }
+      %>
+    </span>
+  </div>
+</div>
+<div class="row">
+</div>
+

@@ -13,6 +13,7 @@ class HomeController < ApplicationController
                         where("created_at < ?", Time.now).
                         reorder('created_at DESC').first(3)
                         #order("created_at ASC").last(2)
+    @offer=Offer.available.sample
   end
 
   # listado de noticias

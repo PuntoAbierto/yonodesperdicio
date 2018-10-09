@@ -92,11 +92,12 @@
     <ul>
       <li><%= link_to root_path, :title => "Inicio", :class => menu_class('inicio'), "data-no-turbolink" => true do %>Inicio
       <% end %></li>
-      <li><%= link_to 'noticias sin desperdicio' , noticias_path, :class => menu_class('noticias') %></li>
+      <li><%= link_to 'noticias' , noticias_path, :class => menu_class('noticias') %></li>
+      <li><%= link_to 'Ofertas', offers_path, class: menu_class('ofertas') %></li>
       <li>
         <div class="btn-group">
-          <button type="button" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= link_to 'ideas frescas' , ideas_path, :class => menu_class('ideas') %>&nbsp;<span class="caret"></span>
+          <button type="button" dropdown-toggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= link_to 'ideas' , ideas_path, :class => menu_class('ideas') %>&nbsp;<span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
             <li><%= link_to "Recetas", ideas_url(category: 'recetas'), :class => submenu_class('recetas') %></li>
@@ -107,7 +108,7 @@
 
       <li>
         <div class="btn-group">
-          <button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button dropdown-toggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= link_to 'alimentos para compartir' , '#', :class => menu_class('compartir') %>&nbsp;<span class="caret"></span>
           </button>
           <ul class="dropdown-menu">

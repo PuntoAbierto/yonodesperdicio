@@ -14,6 +14,7 @@ class Ability
     # if the user is a real user (non anon)
     unless user.username.nil?
       can :create, Ad
+      can %i[create edit update destroy], Offer, user_id: user.id
       can :destroy, Ad, :user_id => user.id
       #can :create, Comment
       can :create, Mailboxer::Message

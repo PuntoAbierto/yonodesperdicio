@@ -1,0 +1,94 @@
+<div id="main" class="col-md-12">
+  <fieldset>
+    <%= form_for @offer, html: { multipart: true } do |f| %>
+      <% if @offer.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= t('nlt.save_failed') %></h2>
+          <ul>
+            <% @offer.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <dl class="zend_form">
+        <dt id="title-label">
+          <%= f.label :title,  t('nlt.offers.form.title'), class: "required" %>
+        </dt>
+        <dd id="title-element">
+          <%= f.text_field :title, required: true, maxlength: 100, size: 45 %>
+          <p class="description">
+            (Requerido) Entre 5 y 100 caracteres
+          </p>
+        </dd>
+        <dt id="store-label">
+          <%= f.label :store,  t('nlt.offers.form.store'), class: "required" %>
+        </dt>
+        <dd id="store-element">
+          <%= f.text_field :store, required: true, maxlength: 100, size: 45 %>
+          <p class="description">
+            (Requerido) Entre 5 y 100 caracteres
+          </p>
+        </dd>
+        <dt id="address-label">
+          <%= f.label :address,  t('nlt.offers.form.address'), class: "required" %>
+        </dt>
+        <dd id="address-element">
+          <%= f.text_field :address, required: true, maxlength: 100, size: 45 %>
+          <p class="description">
+            (Requerido) Entre 5 y 100 caracteres
+          </p>
+        </dd>
+        <dt id="description-label">
+        <%= f.label :description,  t('nlt.offers.form.description'), :class => "required" %>
+        </dt>
+        <dd id="description-element">
+          <%= f.text_area :description, :rows => 10, :cols => 80, :required => true, :maxlength => 500, placeholder: "Por ejemplo, puedes describir la oferta." %>
+        <p class="description">
+          (Requerido) <%= 'Entre 10 y 500 caracteres.' %><br>
+          <%= '(No copies y pegues texto, porque sin querer puedes traer caracteres raros. Mejor escribe aquí directamente.)' %>
+        </p>
+        </dd>        
+        <dt id="pick_up-label">
+          <%= f.label :until,  t('Disponible hasta') %>
+        </dt>
+        <dd id="pick-up-element">
+          <%= f.date_select :until, :include_blank => true, :start_year => Time.now.year, :default => {:day => nil, :month => nil, :year => nil} %>
+        <p class="description">
+          <%= t 'Elige una fecha' %>
+        </p>
+        </dd>
+        <% if @offer.image.exists? %>
+          <div class="ad_list_image">
+            <%= link_to image_tag(@offer.image.url(:thumb), :alt => @offer.title), @offer.image.url, :rel => 'superbox[image]', :alt => t('nlt.click_to_large') %>
+          </div>
+        <% end %>
+
+        <dt id="photo-label">
+          <%= f.label :image,  t('nlt.offers.form.image'), :class => "optional" %>
+        </dt>
+        <dd>
+          <%= f.file_field :image %>
+        </dd>
+        <p class="description">
+          (Opcional) <%= t 'nlt.ads.form.image_permitted_formats' %>
+        </p>
+
+        <% unless params[:action] == "edit" %>
+          <dt id="captcha-input-label">
+          <label for="captcha-input" class="required">
+            <%= t('nlt.please_introduce') %>
+          </label>
+          </dt>
+          <dd id="captcha-element">
+          <%= recaptcha_tags(:display => { :theme => "white" }, ajax: true)%>
+          </dd>
+        <% end %>
+        <dd>
+        <div class="actions"><%= f.submit t 'nlt.send' %></div>
+        </dd>
+      <% end %>
+    </dl>
+  </fieldset>
+</div>

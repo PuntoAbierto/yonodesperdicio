@@ -55,6 +55,7 @@ Yonodesperdicio::Application.routes.draw do
     resources :ads do
       resources :comments, :only => [:create]
     end
+    resources :offers
     resources :mailboxes, :only => [:show] do
       resources :conversations, :only => [:index, :show] do
         resources :messages, :only => [:index, :create]
@@ -78,6 +79,8 @@ Yonodesperdicio::Application.routes.draw do
     get '/listall/page/:page/ad_type/:type', to: redirect('/ad/listall/ad_type/%{type}?page=%{page}')
     get '/listuser/id/:id', to: 'users#listads', as: 'listads_user'
   end
+
+  resources :offers
 
   # locations lists
   get '/woeid/:id/:type', to: 'woeid#show', as: 'ads_woeid'

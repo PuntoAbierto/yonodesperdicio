@@ -230,6 +230,8 @@ es:
     - :month
     - :year
   datetime:
+    format:
+      short: "%Y"
     distance_in_words:
       about_x_hours:
         one: alrededor de 1 hora
@@ -456,6 +458,16 @@ es:
       become_user: "[ADMIN] Cambiar a este usuario"
       lock_user: "[ADMIN] Bloquear a este usuario"
       unlock_user: "[ADMIN] Desbloquear a este usuario"
+    offers:
+      publish: Publicar oferta
+      edited: Oferta editada satisfactoriamente
+      created: Oferta creada satisfactoriamente
+      form:
+        title: Título
+        address: Dirección
+        description: Descripción
+        store: Establecimiento
+        image: Selecciona una imagen
     ads:
       updated: Hemos actualizado el anuncio
       created: Hemos creado el anuncio
@@ -713,6 +725,7 @@ es:
       default: "%A, %d de %B de %Y %H:%M:%S %z"
       long: "%d de %B de %Y %H:%M"
       short: "%d de %b %H:%M"
+      small: "%d-%m-%Y"
     pm: pm
   unauthorized:
     default: No estás autorizado para acceder a esta página.
@@ -740,4 +753,6 @@ es:
       next: "Siguiente"
       last: "Última"
       truncate: "&hellip;&rdquo;"
-
+  offers:
+    index: Ofertas
+    availables: Ofertas disponibles

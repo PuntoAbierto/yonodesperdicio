@@ -1,0 +1,21 @@
+<div class="col-md-3 col-sm-3 col-xs-12">
+  <% if title %>
+    <h2>Ofertas</h2>
+  <% end %>
+  <% if offer %>
+  <div class="offer">
+    <div class="offer_image">
+      <%= link_to offer_path(offer) do %>
+        <%= image_tag offer.image.url(:medium), title: offer.title, alt: offer.title, class: "img-responsive" %>
+      <% end %>
+    </div>
+    <h4><%= link_to offer.title, offer_path(offer) %></h4>
+    <p>Establecimiento: <%= offer.store %></p>
+    <p>Dirección: <%= offer.address %></p>
+    <p>Disponible hasta el <%= l(offer.until, format: :small) %></p>
+  </div>
+    <%= link_to 'Ver +', offers_url if title%>
+  <% else %>
+    <p>No hay ofertas disponibles</p>
+  <% end %>
+</div>
