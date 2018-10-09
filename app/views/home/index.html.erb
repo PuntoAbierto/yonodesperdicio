@@ -2,10 +2,10 @@
 <div id="alimentospro" class="row">
   <div class="col-md-9 col-xs-12">
   <h2>Alimentos para compartir</h2>
-  <% @alimentospro.each_slice(4) do |alimentos| %>
+  <% @alimentospro.each_slice(3) do |alimentos| %>
     <% alimentos.each do |alimento| %>
       
-      <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="alimento">
         <%= link_to image_tag(alimento.image.url(:medium), :alt => " ", :class => "img-responsive"), adslug_path(id: alimento.id, slug: alimento.slug) %>
         <% if alimento.is_give? %>
