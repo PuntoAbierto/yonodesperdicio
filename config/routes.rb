@@ -1,4 +1,4 @@
-require 'sidekiq/web'
+# require 'sidekiq/web'
 
 Yonodesperdicio::Application.routes.draw do
 
@@ -6,9 +6,9 @@ Yonodesperdicio::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  authenticated :admin_user do
-    mount Sidekiq::Web, at: "/sidekiq"
-  end
+  # authenticated :admin_user do
+  #   mount Sidekiq::Web, at: "/sidekiq"
+  # end
 
   root 'home#index'
 
