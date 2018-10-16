@@ -465,7 +465,7 @@ es:
       form:
         title: Título
         address: Dirección
-        description: Descripción
+        description: Descripción y precio
         store: Establecimiento
         image: Selecciona una imagen
     ads:
