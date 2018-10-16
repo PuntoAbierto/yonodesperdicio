@@ -1,8 +1,8 @@
-class NotificationWorker
-  include Sidekiq::Worker
-  sidekiq_options queue: 'notifications'
+# class NotificationWorker
+#   include Sidekiq::Worker
+#   sidekiq_options queue: 'notifications'
 
-  def perform(title, message)
+#   def perform(title, message)
 
-  end
-end
+#   end
+# end
