@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :ads
   has_many :ideas
+  has_many :offers
 
   has_many :friendships
   has_many :friends, :through => :friendships

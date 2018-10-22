@@ -24,7 +24,12 @@
       %>
     </span>
   </div>
-</div>
-<div class="row">
+ <div id="acciones" class="col-md-4 col-sm-4 col-xs-4">
+    <% if can? :update, @offer %>
+        <%= link_to edit_offer_path(@offer.id) do %>
+          <div class="submit"><%= t('nlt.edit_this_offer') %></div>
+        <% end %>
+    <% end %>
+  </div><!--/acciones-->
 </div>
 
