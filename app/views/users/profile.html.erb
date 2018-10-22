@@ -106,6 +106,43 @@
         </tr>
       <% end %>
   </table>
+<p class="title-listados">Ofertas compartidas de <%= @user.username %></p>
+<table id="table-alimentos" class="listados table table-responsive">
+  <% if @user.offers.count > 0 %>
+    <% @user.offers.each do |offer| %>
+
+      <tr>
+        <td><%= link_to image_tag(offer.image.url(:thumb), :alt => " ", :class => "img-responsive"), offer_path(offer) %>
+        </td>
+
+        <td>
+          <p class="grande enrojo"><%= link_to offer.title, offer_path(offer) %></p>
+          <p><b>Fecha límite de entrega:</b> <%= formated_date(offer.until) %></p>
+          <p><%= truncate_html(markdown(offer.description).html_safe, length: 150, omission: ' ... ') %></p>
+        </td>
+        <td class="botones">
+          <div>
+            <% if user_signed_in? and @user.id == current_user.id %>
+              <p class="btn btn-azul col-md-12"><%= link_to 'Ver', offer_path(offer) %></p>
+              <% if can? :update, offer %>
+                <p class="btn btn-verde col-md-12"><%= link_to edit_offer_path(offer) do %>
+                  Editar
+              <% end %></p>
+
+              <% if can?(:destroy, offer) %>
+                <p class="btn btn-rojo col-md-12"><%= link_to 'Eliminar', offer_path(offer), method: :delete, data: { confirm: '¿Seguro que quieres eliminar este alimento?' } %></p>
+              <% end %>
+
+            <% end %>
+            <% end %>
+          </div>
+        </td>
+        <% end %>
+      <% else %>
+        <p> <%= t("nlt.no_results.on_user") %> </p>
+        </tr>
+      <% end %>
+  </table>
 
   <p class="title-listados">Ideas de <%= @user.username %></p>
   <table id="table-ideas" class="listados table table-responsive">

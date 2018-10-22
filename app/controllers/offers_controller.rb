@@ -2,7 +2,7 @@
 
 class OffersController < ApplicationController
   before_filter :offers, only: :index
-  before_filter :offer, only: %i[show edit update]
+  before_filter :offer, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   # GET /offers || /offers.json
@@ -44,6 +44,17 @@ class OffersController < ApplicationController
         format.html { render "edit" }
         format.json { render json: @offer.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    if can?(:destroy, @offer)
+      @offer.destroy!
+      flash[:success] = "Oferta eliminada exitosamente"
+      redirect_to request.referrer
+    else
+      flash[:alert] = "No estás autorizado para eliminar esta oferta"
+      redirect_to :root
     end
   end
 
