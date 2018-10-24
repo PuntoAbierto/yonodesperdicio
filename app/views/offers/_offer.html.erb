@@ -9,7 +9,7 @@
         <%= image_tag offer.image.url(:medium), title: offer.title, alt: offer.title, class: "img-responsive" %>
       <% end %>
     </div>
-    <h4><%= link_to offer.title, offer_path(offer) %></h4>
+    <h3 class="veinticinco"><%= link_to offer.title, offer_path(offer) %></h3>
     <p>Establecimiento: <%= offer.store %></p>
     <p>Dirección: <%= offer.address %></p>
     <p>Disponible hasta el <%= l(offer.until, format: :small) %></p>
