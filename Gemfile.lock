@@ -110,6 +110,8 @@ GEM
     capistrano-rbenv (2.0.3)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano3-delayed-job (1.7.2)
+      capistrano (~> 3.0, >= 3.0.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -142,6 +144,11 @@ GEM
     daemons (1.2.3)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
+    delayed_job (4.1.5)
+      activesupport (>= 3.0, < 5.3)
+    delayed_job_active_record (4.1.3)
+      activerecord (>= 3.0, < 5.3)
+      delayed_job (>= 3.0, < 5)
     delayed_paperclip (2.9.1)
       paperclip (>= 3.3)
     devise (3.5.1)
@@ -438,11 +445,14 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails
   capistrano-rbenv
+  capistrano3-delayed-job (~> 1.0)
   capybara
   capybara-webkit
   coffee-rails (~> 4.0.0)
   commands
+  daemons
   database_cleaner
+  delayed_job_active_record
   delayed_paperclip
   devise
   factory_girl_rails (~> 4.0)
@@ -487,4 +497,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.16.5
+   1.16.6

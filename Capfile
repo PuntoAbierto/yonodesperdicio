@@ -11,6 +11,7 @@ require 'capistrano/bundler'
 require 'capistrano/rails'
 
 require 'thinking_sphinx/capistrano'
+require 'capistrano/delayed_job'
 
 # FIXME: undefined method `instance' for Capistrano::Configuration:Class 
 # require 'thinking_sphinx/capistrano'

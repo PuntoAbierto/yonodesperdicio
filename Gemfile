@@ -11,6 +11,8 @@ gem 'jquery-rails'
 #gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'fcm'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :doc do
   gem 'sdoc', require: false
@@ -46,6 +48,7 @@ gem 'capistrano', '~> 3.0'
 gem 'capistrano-rbenv'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
+gem 'capistrano3-delayed-job', '~> 1.0'
 
 gem 'actionpack-page_caching'                       # caching
 gem 'actionpack-action_caching'                     # caching

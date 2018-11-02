@@ -22,6 +22,9 @@ set :linked_files, %w{config/database.yml config/secrets.yml config/newrelic.yml
 set :linked_dirs, %w{db/sphinx log tmp/pids tmp/cache tmp/sockets tmp/cachedir vendor/bundle public/system public/legacy public/.well-known public/assets}
 set :tmp_dir, "/home/yonodesp/tmp"
 set :keep_releases, 5
+set :delayed_job_workers, 2
+
+set :delayed_job_queues, ['mailer','notifications']
 
 # Logical flow for deploying an app
 # after  'deploy:finished',            'thinking_sphinx:index'
