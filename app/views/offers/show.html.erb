@@ -24,11 +24,19 @@
       %>
     </span>
   </div>
- <div id="acciones" class="col-md-4 col-sm-4 col-xs-4">
+ <div id="acciones" class="acciones col-md-4 col-sm-4 col-xs-4">
     <% if can? :update, @offer %>
-        <%= link_to edit_offer_path(@offer.id) do %>
-          <div class="submit"><%= t('nlt.edit_this_offer') %></div>
-        <% end %>
+        <%= link_to 'Editar',
+          edit_offer_path(@offer),
+          class: "btn btn-block btn-verde" %>
+    <% end %>
+    <% if can?(:destroy, @offer) %>
+        <%= link_to 'Eliminar',
+          offer_path(@offer), 
+          method: :delete, 
+          class: "btn btn-block btn-rojo",
+          data: { confirm: '¿Seguro que quieres eliminar este alimento?' } %>
+      </p>
     <% end %>
   </div><!--/acciones-->
 </div>
