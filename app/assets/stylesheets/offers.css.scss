@@ -7,3 +7,14 @@
   margin: 1em 0;
   padding: 1em;
 }
+.acciones{
+  a.btn-rojo{
+    color: white;
+    &:hover{
+      background: white;
+      border: 1px solid #e55333;
+      color: #e55333;
+    }
+  }
+}
+
