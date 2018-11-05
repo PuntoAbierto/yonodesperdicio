@@ -1,4 +1,5 @@
 class Idea < ActiveRecord::Base
+  after_create :send_notification
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -45,5 +46,13 @@ class Idea < ActiveRecord::Base
     r
   end
   
+  private
+
+  def send_notification
+    NotificationWorker.new("idea", id).deliver(
+      "Nueva idea compartida",
+      "#{user.username} ha compartido una nueva idea que te puede interesar"
+    )
+  end
 
 end

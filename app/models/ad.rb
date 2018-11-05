@@ -1,6 +1,7 @@
 # encoding : utf-8
 class Ad < ActiveRecord::Base
 
+  after_create :send_notification
   require 'ipaddress'
 
   FOOD_CATEGORIES = [
@@ -216,6 +217,15 @@ class Ad < ActiveRecord::Base
     r = r.where("ads.user_id = ?", user_id) if user_id.present?
     r = r.where("ads.status = ?", status) if status.present?
     r
+  end
+
+  private
+
+  def send_notification
+    NotificationWorker.new("alimento", id).deliver(
+      "Nuevo alimento compartido",
+      "#{user.username} ha compartido un nuevo alimento que te puede interesar"
+    )
   end
 
 end

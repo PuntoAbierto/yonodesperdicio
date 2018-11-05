@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   ratyrate_rater
   ratyrate_rateable "rating"
 
+  scope :registration_ids, -> { pluck(:fcm_registration_token).compact }
+
   def to_s
     username
   end

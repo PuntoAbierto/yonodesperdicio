@@ -2,6 +2,7 @@
 
 class Offer < ActiveRecord::Base
   before_validation :set_published_at, only: :create
+  after_create :send_notification
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -35,5 +36,12 @@ class Offer < ActiveRecord::Base
 
   def set_published_at
     self.published_at = Time.now
+  end
+
+  def send_notification
+    NotificationWorker.new("oferta", id).deliver(
+      "Nueva oferta compartida",
+      "#{user.username} ha compartido una nueva oferta que te puede interesar"
+    )
   end
 end
