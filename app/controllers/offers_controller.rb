@@ -51,7 +51,7 @@ class OffersController < ApplicationController
     if can?(:destroy, @offer)
       @offer.destroy!
       flash[:success] = "Oferta eliminada exitosamente"
-      redirect_to request.referrer
+      redirect_to :root
     else
       flash[:alert] = "No estás autorizado para eliminar esta oferta"
       redirect_to :root
