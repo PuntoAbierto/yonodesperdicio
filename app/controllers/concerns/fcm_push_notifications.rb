@@ -20,6 +20,7 @@ module FCMPushNotifications
     options = {
       data:
       {
+        resource: "message",
         message_id: receipt.message.id,
         conversation: receipt.conversation.id,
         author_id: receipt.message.sender.id
