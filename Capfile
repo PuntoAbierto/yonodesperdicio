@@ -13,6 +13,8 @@ require 'capistrano/rails'
 require 'thinking_sphinx/capistrano'
 require 'capistrano/delayed_job'
 
+require 'whenever/capistrano'
+
 # FIXME: undefined method `instance' for Capistrano::Configuration:Class 
 # require 'thinking_sphinx/capistrano'
 

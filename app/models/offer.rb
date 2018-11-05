@@ -32,6 +32,10 @@ class Offer < ActiveRecord::Base
 
   enum status: %i[available expired]
 
+  def self.expire
+    where(status: 0).where('until < ?', Time.now).update_all status: 1
+  end
+
   private
 
   def set_published_at
