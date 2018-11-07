@@ -60,6 +60,9 @@ es:
       idea:
         one: "Idea"
         other: "Ideas"
+      offer:
+        one: "Oferta"
+        other: "Ofertas"
       organization:
         one: "Organización"
         other: "Organizaciones"
@@ -143,6 +146,18 @@ es:
         published_at: "Publicado el día"
         created_at: "Creado el día"
         updated_at: "Actualizado el día"
+      offer:
+        status: Estado
+        title: Titulo
+        image: Imagen
+        description: Descripción
+        store: Tienda
+        address: Dirección
+        until: Disponible hasta
+        user: Usuario
+        statuses:
+          available: Disponible
+          expired: Expirado
 
     errors:
       format: "%{attribute} %{message}"

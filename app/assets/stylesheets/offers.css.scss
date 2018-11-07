@@ -16,5 +16,13 @@
       color: #e55333;
     }
   }
+  a.btn-verde{
+    color: white;
+    &:hover{
+      background: white;
+      border: 1px solid #6abf4a;
+      color: #6abf4a;
+    }
+  }
 }
 

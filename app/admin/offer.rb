@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Offer do
-  permit_params :title, :description, :status, :address, :store, :until
+  permit_params :title, :description, :image, :status, :address, :store, :until, :user_id
 
 
   controller do
@@ -30,7 +30,7 @@ ActiveAdmin.register Offer do
 
   form do |f|
     f.inputs "Admin Details" do
-      f.input :user, as: :select, user_id: :username      
+      f.input :user, as: :select, user_id: :id      
       f.input :status, as: :select, collection: Offer.statuses.keys
       f.input :title
       f.input :description
