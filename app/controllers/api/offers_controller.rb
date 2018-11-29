@@ -16,6 +16,8 @@ class Api::OffersController < Api::BaseController
 
   def create
     @offer = Offer.new(offer_params)
+    
+    @offer.image = parse_image_data(params[:offer][:image]) if params[:offer][:image]
     if @offer.save
       render "offers/show", status: :created 
     else
@@ -43,5 +45,23 @@ class Api::OffersController < Api::BaseController
 
   def offer
     @offer ||= Offer.friendly.find(params[:id])
+  end
+
+
+  def parse_image_data(image_data)
+    filename = image_data[:filename]
+
+    @tempfile = Tempfile.new(filename)
+    @tempfile.binmode
+    @tempfile.write Base64.decode64(image_data[:content])
+    @tempfile.rewind
+
+    uploaded_file = ActionDispatch::Http::UploadedFile.new(
+      tempfile: @tempfile,
+      filename: filename
+    )
+
+    uploaded_file.content_type = image_data[:content_type]
+    uploaded_file
   end
 end
