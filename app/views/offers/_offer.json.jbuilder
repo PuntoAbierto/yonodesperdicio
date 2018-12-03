@@ -1,5 +1,6 @@
 json.id offer.id
 json.title offer.title
+json.description offer.description
 json.address offer.address
 json.store offer.store
 json.until offer.until
