@@ -33,6 +33,15 @@ class Api::OffersController < Api::BaseController
     end
   end
 
+  def destroy
+    if can?(:destroy, @offer)
+      @offer.destroy!
+      render json: {message: "Oferta eliminada exitosamente"}
+    else
+      render json: {message: "No se puede eliminar"}, status: :unauthorized
+    end
+  end
+
   private
 
   def offer_params
