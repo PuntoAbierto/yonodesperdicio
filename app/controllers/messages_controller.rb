@@ -38,14 +38,14 @@ class MessagesController < ApplicationController
         return redirect_to root_path
       end
       receipt = current_user.reply_to_conversation(@conversation, @message.body, nil, true, true, @message.attachment)
-      FCMPushNotifications.delay.message_sent(receipt)
+      send_notification(receipt)
     else
       @message.recipients = User.find(params[:mailboxer_message][:recipients])
       unless @message.valid?
         return render :new
       end
       receipt = current_user.send_message(@message.recipients, @message.body, @message.subject, true, @message.attachment)
-      FCMPushNotifications.delay.message_sent(receipt)
+      send_notification(receipt)
     end
     flash.now[:notice] = I18n.t "mailboxer.notifications.sent"
     redirect_to mailboxer_message_path(receipt.conversation)
@@ -109,6 +109,10 @@ class MessagesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def message_params
     params.require(:mailboxer_message).permit(:conversation_id, :body, :subject, :recipients, :sender_id)
+  end
+
+  def send_notification(receipt)
+    FCMPushNotifications.delay(queue: "notifications").message_sent(receipt)
   end
 
 end
